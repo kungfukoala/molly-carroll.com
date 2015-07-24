@@ -1,0 +1,31 @@
+@import '../helpers/animate'; // Animate.css https://github.com/daneden/animate.css
+
+// .animation-img {
+// 	position:absolute;
+// 	z-index:$z-animation;
+// 	background:url(#{$img-assetpath}jj_animations.png) no-repeat;
+// }
+// @include keyframes(mailbox) {
+//   0% {
+//     opacity:0;
+//   }
+//   85% {
+//     opacity:0;
+//   }
+//   100% {
+//     opacity:1;
+//   }
+// }
+// .animation-mailbox {
+// 	opacity:0;
+// 	top:1220px;
+// 	left:356px;
+// 	width:171px;
+// 	height:193px;
+// 	background-position:0px 0px;
+// 	@include animation-name(mailbox);
+// 	@include animation-timing-function(ease-out-in);
+// 	@include animation-duration(1s);
+// 	@include animation-iteration-count(infinite);
+// 	@include animation-direction(alternate);
+// }

@@ -1,0 +1,59 @@
+////////////////////
+//////////////////
+//
+// Jacksons Corner
+// Website
+// TYPOGRAPHY
+// v 1.0
+//
+// TABLE OF CONTENTS
+//
+// - Fonts
+// - Colors
+// - Typography
+//
+//////////////////
+////////////////////
+// @include font-face(adelaide, '#{$font-assetpath}adelaide-webfont');
+////////////////////
+//
+// Base
+//
+////////////////////
+body { -webkit-font-smoothing: antialiased; }
+p {
+	color:$primary;
+	line-height:em(30);
+	padding-bottom:em(25);
+}
+em { font-weight:700; }
+i { font-style:italic; }
+////////////////////
+//
+// Headers
+//
+////////////////////
+h1, h2, h3 { font-family:$secondary-font; color:$primary; }
+h1 { font-size:em(40); }
+h2 { font-size:em(35); }
+h3 { font-size:em(30); }
+h4, h5, h6 { font-family:$tertiary-font; color:$primary; }
+h4 { font-size:em(28); }
+h5 { font-size:em(25); }
+h6 { font-size:em(16); }
+
+.h1, .h2, .h3 { @extend h1; }
+.h1 { font-size:em(40); }
+.h2 { font-size:em(35); }
+.h3 { font-size:em(30); }
+.h4, .h5, .h6 { @extend h4; }
+.h4 { font-size:em(28); }
+.h5 { font-size:em(25); }
+.h6 { font-size:em(16); }
+////////////////////
+//
+// Links
+//
+////////////////////
+.current { color:white; }
+a { color:$primary; }

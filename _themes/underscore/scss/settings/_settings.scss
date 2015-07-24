@@ -1,0 +1,110 @@
+////////////////////
+//////////////////
+//
+// Underscore
+// Application
+// SETTINGS
+// v 1.1
+//
+// TABLE OF CONTENTS
+//
+//	B A S E
+//  Asset Paths = Define where your assets live
+//  Default Width = Default center width for Center mixin
+//  Breakpoints = For media quieries
+//  Grid = Bourbon Neat Grid Settings
+//	V I S U A L
+//  Colors =
+//  Typography = 
+//  Z Index - May not need...
+//
+//////////////////
+////////////////////
+// Asset Paths
+////////////////////
+$img-assetpath: 	"/_themes/underscore/img/";
+$font-assetpath:	"/_themes/underscore/fonts/";
+////////////////////
+// Default Width
+////////////////////
+$default-width:		1024px;
+////////////////////
+// Grid
+////////////////////
+$column: golden-ratio(1em, 3) !default; // Column width
+$gutter: golden-ratio(0em, 0) !default; // Gutter between each two columns
+$grid-columns: 8 !default; // Total number of columns in the grid
+$max-width: 100% !default; // Max-width of the outer container
+$border-box-sizing: true !default; // Makes all elements have a border-box layout
+$default-feature: min-width; // Default @media feature for the breakpoint() mixin
+$default-layout-direction: LTR !default;
+// Visual Grid
+$visual-grid: false !default; // Display the base grid
+$visual-grid-color: #aaa !default;
+$visual-grid-index: front !default; // Show grid behind content (back) or overlay it over the content (front)
+$visual-grid-opacity: 0.4 !default;
+$visual-grid-breakpoints: () !default;
+////////////////////
+//
+// Colors
+//
+////////////////////
+$primary:			rgb(0,0,0); 		// Black
+$secondary:			rgb(208,208,203);  	// Silver
+$tertiary:			rgb(245,245,230); 	// Cream
+
+$green:				rgb(94,224,170);
+$darkgreen:			rgb(20,140,105);
+$yellow:			rgb(232,189,104);
+$purple:			rgb(134,106,149);
+$magenta:			rgb(212,90,138);
+$silver:			rgb(208,208,203);  	// Silver
+$cream:				rgb(245,245,230); 	// Cream
+////////////////////
+//
+// Typography
+//
+////////////////////
+$base-font-size:	em(14);
+$font-small:		em(12);
+$font-medium:		em(18);
+$font-large:		em(22);
+
+
+$primary-font: 		"ff-meta-web-pro", helvetica, san-serif;
+$secondary-font: 	"lust", georgia, serif;
+$tertiary-font: 	"ff-meta-serif-sc-web-pro", georgia, serif;
+////////////////////
+//
+// Images
+//
+////////////////////
+$nav-background: "mc_nav_background_1.0.png";
+$content-background: "mc_contentbackground_1.1.png";
+%content-background { background:url(#{$img-assetpath}#{$nav-background}) center top no-repeat, url(#{$img-assetpath}#{$content-background}) right top no-repeat; }
+$home-background: "mc_homebackground_1.0.png";
+%home-background { background:url(#{$img-assetpath}#{$nav-background}) center top no-repeat, url(#{$img-assetpath}#{$home-background}) right top no-repeat; }
+$color-band: "mc_colorband.jpg";
+%color-band { background:url(#{$img-assetpath}#{$color-band}); }
+$artwork-band: "mc_artwork_1.1.jpg";
+%artwork-band { background:url(#{$img-assetpath}#{$artwork-band}); }
+$face-artwork: "mc_face_1.0.png";
+%face-artwork { background:url(#{$img-assetpath}#{$face-artwork}); }
+$background: "mc_background.jpg";
+%background { background:url(#{$img-assetpath}#{$background}); }
+////////////////////
+//
+// Z-Index
+//
+////////////////////
+$z-logo:			1000;
+$z-face:			900;
+////////////////////
+//
+// Padding & Margins
+//
+////////////////////
+$padding-small:		25px;
+$padding-medium:	45px;
+$padding-large:		100px;
+

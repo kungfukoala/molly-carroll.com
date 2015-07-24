@@ -1,0 +1,24 @@
+// Image scaling for responsive
+img {
+  width: auto\9;
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}
+// Center a Layout
+%center {
+	width:$default-width;
+	max-width:$default-width;
+	text-align:center;
+	margin:0 auto;
+}
+// Wireframes
+@mixin wireframes($color: black, $width: 1px, $font: helvetica) {
+	border: {
+		color:$color;
+		width:$width;
+		style:solid;
+	}
+}

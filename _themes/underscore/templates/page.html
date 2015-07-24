@@ -1,0 +1,40 @@
+<header class="page-header">
+	 <h1>{{ title }}</h1>
+</header>
+{{ if segment_1 == 'blog' }}
+	{{ theme:partial src="category-list" }}
+{{ endif }}
+{{ if segment_1 == 'flourish' }}
+<ul class="nav nav-secondary">
+  {{ nav from="/flourish" }}
+    <li><a href="{{ url }}"{{ if is_current || is_parent }} class="current"{{ endif }}>{{ title }}</a></li>
+  {{ /nav }}
+</ul>
+{{ endif }}
+{{ if segment_2 == 'events' }}
+<div class="body">
+{{ entries:listing  sort_dir="asc" }}
+{{ if no_results }}
+<div class="event entry">
+  <h3>No events on the horizon.</h3>
+</div>
+{{ else }}
+ <div class="event entry">
+    <div class="event-date">
+      <span class="month"> {{ date format="M" }}</span>
+      <span class="day"> {{ date format="j" }}</span>
+      <span class="year"> {{ date format="Y" }}</span>
+    </div>
+    <div class="event-details">
+      <h3 class="event-title">{{ title }}</h3>
+      {{ content }}
+    </div>
+  </div>
+{{ endif }}
+{{ /entries:listing }}
+</div>
+{{ else }}
+<div class="body">
+	{{ content }}
+</div>
+{{ endif }}

@@ -1,0 +1,8 @@
+# The URL containing the login form
+login_url: /member/login
+
+# The URL to forward logged-in members that do not have access to a page
+no_access_url: /no-access
+
+# The URL containing the password form
+password_form_url: /member/password

@@ -1,0 +1,29 @@
+title: Standard Page
+
+fields:
+  content:
+    display: Page Content
+    type: redactor
+    image_dir: assets/img/
+	
+  color:
+    display: Template Color
+    type: select
+    options:
+      - salmon
+      - green
+      - yellow
+      - teal
+      - purple
+      - pink
+	  
+  artwork:
+    display: Template Artwork
+    type: select
+    options:
+      - one
+      - two
+      - three
+      - four
+      - five
+      - six

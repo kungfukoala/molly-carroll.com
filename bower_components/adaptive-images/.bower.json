@@ -1,0 +1,14 @@
+{
+  "name": "adaptive-images",
+  "homepage": "https://github.com/MattWilcox/Adaptive-Images",
+  "_release": "faa87fd94f",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "faa87fd94fc59373df7c2e5bb605c7e3c28e38a4"
+  },
+  "_source": "git://github.com/MattWilcox/Adaptive-Images.git",
+  "_target": "*",
+  "_originalSource": "adaptive-images",
+  "_direct": true
+}

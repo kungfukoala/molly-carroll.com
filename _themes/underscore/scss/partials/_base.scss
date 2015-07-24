@@ -1,0 +1,173 @@
+////////////////////
+//////////////////
+//
+// Underscore
+// BASE
+// v 1.0
+//
+// TABLE OF CONTENTS
+//
+//
+//////////////////
+////////////////////
+//
+// Base
+//
+////////////////////
+html, body { height:100%; }
+body {
+	font-size:$base-font-size;
+	font-family:$primary-font;
+	color:$primary;
+	background-color:$tertiary;
+	@extend %background;
+}
+////////////////////
+//
+// Structure
+//
+////////////////////
+.container {
+	@include outer-container;
+	height:100%;
+}
+.content {
+	@include span-columns(5);
+	@extend %content-background;
+	background-color:$tertiary;
+	.page-header { @include span-columns(2 of 5); padding-left:$padding-medium; }
+	.body { padding:$padding-medium $padding-medium $padding-medium $padding-medium; @include span-columns(5 of 5); }
+}
+.content-home {
+	@extend .content;
+	@extend %home-background;
+	background-color:$green;
+	height:900px;
+	.page-header { @include span-columns(2 of 5); padding-left:$padding-medium; }
+	.body { padding:$padding-medium $padding-medium $padding-medium $padding-medium; @include span-columns(5 of 5); }
+}
+.home-introduction {
+	margin-right:175px;
+}
+.entry {
+	margin-bottom:$padding-medium;
+	padding:0 $padding-medium $padding-medium $padding-medium;
+	border-bottom:1px dotted $magenta;
+}
+.body-container {
+	margin-top:255px;
+	padding-left:$padding-small;
+}
+.footer-container {
+	font-size:$font-small;
+	padding:$padding-large $padding-medium $padding-medium $padding-medium;
+}
+.artwork { position:relative; height:100%; @include span-columns(3); }
+.embellishment { position:relative; width:368px; }
+.face {
+	position:absolute;
+	z-index:$z-face;
+	top:0px;
+	right:0px;
+	width:368px;
+	height:607px;
+	@extend %face-artwork;
+}
+.color-band {
+	width:368px;
+	height:433px;
+	@extend %color-band;
+}
+.salmon {
+	background-position:0px -2162px;
+}
+.green {
+	background-position:0px -1730px;
+}
+.yellow {
+	background-position:0px -1298px;
+}
+.teal {
+	background-position:0px -862px;
+}
+.purple {
+	background-position:0px -431px;
+}
+.pink {
+	
+}
+.artwork-band {
+	width:368px;
+	height:100%;
+	@extend %artwork-band;
+}
+.one {
+	background-position:0px 0px;
+}
+.two {
+	background-position:-385px 0px;
+}
+.three {
+	background-position:-770px 0px;
+}
+.four {
+	background-position:-1150px 0px;
+}
+.five {
+	background-position:-1540px 0px;
+}
+.six {
+	background-position:-1925px 0px;
+}
+////////////////////
+//
+// Navigation
+//
+////////////////////
+.nav-container { padding-left:$padding-small; }
+.nav {
+	width:100%;
+	float:left;
+	margin:20px 0 2em 0;
+	padding:0;
+	list-style:none;
+	li { float:left; }
+	a {
+		display:block;
+		font-size:em(19);
+		font-family:$tertiary-font;
+		text-decoration:none;
+		text-transform:lowercase;
+		letter-spacing:em(1);
+		margin-right:em(14);
+		border-bottom:1px dotted $cream;
+	}
+}
+.nav-secondary {
+	padding-left:$padding-medium;
+	a {
+		display:block;
+		font-size:em(19);
+		font-family:$tertiary-font;
+		color:$purple;
+		text-decoration:none;
+		text-transform:lowercase;
+		letter-spacing:em(1);
+		margin-right:em(14);
+		border-bottom:1px dotted $purple;
+	}
+	.current { color:$yellow; border-bottom:1px dotted $yellow; }
+}
+////////////////////
+//
+// Logo
+//
+////////////////////
+.logo {
+	position:absolute;
+	z-index:$z-logo;
+	top:80px;
+	right:15px;
+	width:417px;
+	height:186px;
+}

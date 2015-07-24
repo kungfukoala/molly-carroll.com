@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{{ _site_name }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/javascript" src="//use.typekit.net/yjh3odg.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <link rel="stylesheet" href="{{ theme:css src="styles" }}">
+  <link rel="icon" type="image/png" href="{{ theme:img src="favicon.png" }}">
+</head>
+<body>
+	<div class="container">
+		<div class="content{{ if !segment_1 }}-home{{ endif }}">
+			<nav class="nav-container">
+				{{ theme:partial src="nav" }}
+			</nav>
+			<div class="body-container">
+				{{ quote|title }}
+				{{ layout_content }}
+			</div>
+			<footer class="footer-container">
+				Copyright {{ current_date format="Y"}} Flourish - All Artwork is by Molly Carroll
+			</footer>
+		</div>
+		<div class="artwork">
+			<div class="embellishment"><div class="logo"><a href="{{ homepage }}"><img src="{{ theme:img src="mc_logo_2.1.png" }}" width="417" height="186" alt="Molly Carroll"></a></div><div class="face"></div></div>
+			<div class="color-band {{ color }}"></div>
+			<div class="artwork-band {{ artwork }}"></div>
+		</div>
+	</div>
+</body>
+</html>

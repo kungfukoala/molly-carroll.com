@@ -1,0 +1,8 @@
+.htaccess
+.sass-cache
+_logs/*
+_cache/*
+_config/users/*
+_content/*
+assets/*
+config.codekit

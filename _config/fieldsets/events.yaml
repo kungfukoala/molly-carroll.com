@@ -1,0 +1,18 @@
+title: Flourish Event
+
+fields:
+  eventdate:
+    display: Event Date
+    type: date
+  categories:
+    display: Categories
+    required: false
+    default:
+    type: tags
+  content:
+    type: redactor
+  upload:
+    type: file
+    destination: assets/events/
+
+hide: true

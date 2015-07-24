@@ -1,0 +1,12 @@
+<div class="block">
+  <header>
+    <h1>{{ title }}</h1>
+  </header>
+
+  {{ content }}
+
+  {{ location:map_listing folder="camp-spots" locate_with="where" }}
+	<h2>{{ title }}</h2>
+	<p>{{ comment }}</p>
+  {{ /location:map_listing }}
+</div>
