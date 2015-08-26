@@ -104,15 +104,17 @@ _enable_static_pipeline: false
 #
 ###########################################################################################
 
+_display_debug_panel: false
+
 # Specify which URLs belong to a given environment, and when you access Statamic from
 # a matching URL, we'll merge the environment-specific config from _config/environments
-#    - '*.dev'
-#_environments:
-#  dev:
-#    - 'http://localhost*'
-#    - '*.localip'
-#  live:
-#    - '*.com'
+_environments:
+  dev:
+    - 'http://localhost*'
+    - '*.dev'
+    - '*.localip'
+  live:
+    - '*.com'
 
 # Set to 'true' if you want to log system messages
 _log_enabled: false

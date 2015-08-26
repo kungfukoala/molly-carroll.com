@@ -49,7 +49,6 @@ body {
 	@extend .content;
 	@extend %home-background;
 	background-color:$green;
-	height:900px;
 	.page-header { @include span-columns(2 of 5); padding-left:$padding-medium; }
 	.body { padding:$padding-medium $padding-medium $padding-medium $padding-medium; @include span-columns(5 of 5); }
 }
@@ -64,14 +63,15 @@ body {
 	border-bottom:1px dotted $magenta;
 }
 .body-container {
-  padding-right:2em;
-  padding-left:2em;
+  padding-right:1.2em;
+  padding-left:1.2em;
   @include min-screen(nth($res-collection, 3)*1px) {
     padding-left:$padding-small;
   	margin-top:255px;
   }
 }
 .footer-container {
+  @include span-columns(8);
 	font-size:$font-small;
 	padding:$padding-large $padding-medium $padding-medium $padding-medium;
 }
@@ -145,7 +145,7 @@ body {
 //
 ////////////////////
 .nav-container { 
-  padding-left:2em;
+  padding-left:1.2em;
   @include min-screen(nth($res-collection, 3)*1px) {
   	padding-left:$padding-small;
   }
@@ -166,6 +166,7 @@ body {
 		margin-right:em(14);
 		border-bottom:1px dotted $cream;
 	}
+  .current { color:$silver; border-bottom:1px dotted $silver; }
   @include min-screen(nth($res-collection, 3)*1px) {
   	li { float:left; }
   }
@@ -183,7 +184,7 @@ body {
 		margin-right:em(14);
 		border-bottom:1px dotted $purple;
 	}
-	.current { color:$yellow; border-bottom:1px dotted $yellow; }
+	.current { color:$silver; border-bottom:1px dotted $silver; }
 }
 ////////////////////
 //
