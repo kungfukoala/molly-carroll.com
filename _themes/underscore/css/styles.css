@@ -419,7 +419,7 @@ html, body {
   height: 100%; }
 
 body {
-  font-size: 1.2em;
+  font-size: 1em;
   font-family: "ff-meta-web-pro", helvetica, san-serif;
   color: black;
   background-color: #fce2c6; }
@@ -499,6 +499,7 @@ body {
   border-bottom: 1px dotted #d45a8a; }
 
 .body-container {
+  padding-top: 80px;
   padding-right: 1.2em;
   padding-left: 1.2em; }
   @media screen and (min-width: 770px) {

@@ -66,6 +66,7 @@ body {
 	border-bottom:1px dotted $magenta;
 }
 .body-container {
+  padding-top:80px;
   padding-right:1.2em;
   padding-left:1.2em;
   @include min-screen(nth($res-collection, 3)*1px) {
