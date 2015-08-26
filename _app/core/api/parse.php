@@ -1,6 +1,5 @@
 <?php
 
-use \erusev\ParsedownExtra;
 use \Michelf\MarkdownExtra;
 use \Michelf\SmartyPants;
 use \Michelf\SmartyPantsTypographer;
@@ -45,7 +44,9 @@ class Parse
         // check for parser, create if needed
         if (!isset(self::$parsers['markdown'])) {
             if (strtolower(Config::get('markdown_parser', 'standard')) === "parsedown") {
-                self::$parsers['markdown'] = new ParsedownExtra();
+                $parser = new ParsedownExtra();
+	            $parser->setUrlsLinked(Config::get('markdown:convert_urls_to_links', true));
+
             } else {
                 $parser = new MarkdownExtra;
 
@@ -55,9 +56,9 @@ class Parse
                 $parser->predef_abbr       = Config::get('markdown:predefined_abbreviations', array());
                 $parser->code_class_prefix = Config::get('markdown:code_class_prefix', '');
                 $parser->code_attr_on_pre  = Config::get('markdown:code_attr_on_pre', false);
-
-                self::$parsers['markdown'] = $parser;
             }
+
+            self::$parsers['markdown'] = $parser;
         }
 
         // parse for markdown
@@ -205,6 +206,28 @@ class Parse
         return $output;
     }
 
+    /**
+     * Checks for and parses front matter
+     *
+     * @param string  $string  Content to parse
+     * @return array
+     */
+    public static function frontMatter($string, $yamlize = true)
+    {
+        $data = array();
+        $content = $string;
+
+        if (Pattern::startsWith($string, "---")) {
+            list($yaml, $content) = preg_split("/\n---/", $string, 2, PREG_SPLIT_NO_EMPTY);
+
+            if ($yamlize) {
+                $data = self::yaml($yaml);
+            }
+        }
+
+        return compact('data', 'content');
+    }
+
 
     /**
      * Parses a conditions string
@@ -217,13 +240,14 @@ class Parse
         // start measuring
         $hash = Debug::markStart('parsing', 'conditions');
         Debug::increment('parses', 'condition_statements');
+        $replacement = '__TEMP_COMMA_' . substr(md5(time()), 0, 12) . '__';
         
-        $conditions = explode(",", $conditions);
+        $conditions = explode(",", str_replace('\,', $replacement, $conditions));
         $output = array();
 
         foreach ($conditions as $condition) {
             Debug::increment('parses', 'conditions');
-            $result = Parse::condition($condition);
+            $result = Parse::condition(str_replace($replacement, ',', $condition));
             $output[$result['key']] = $result['value'];
         }
 

@@ -6,7 +6,7 @@ define("STATAMIC_START", microtime(true));
 global $is_debuggable_route;
 $is_debuggable_route = false;
 
-const STATAMIC_VERSION = '1.8';
+const STATAMIC_VERSION = '1.10.6';
 const APP_PATH = __DIR__;
 
 // handle the PHP development server
@@ -18,7 +18,6 @@ define("ENVIRONMENT_PATH_PREFIX", (php_sapi_name() === "cli-server") ? "index.ph
 // setting this now so that we can do things before the configurations are fully loaded
 // without PHP freaking out in PHP 5.3.x
 date_default_timezone_set('UTC');
-
 
 /*
 |--------------------------------------------------------------------------
@@ -64,8 +63,11 @@ foreach ($packages as $package) {
 }
 
 require_once __DIR__ . '/vendor/PHPMailer/PHPMailerAutoload.php';
-
 require_once __DIR__ . '/vendor/Spyc/Spyc.php';
+require_once __DIR__ . '/vendor/erusev/Parsedown.php';
+require_once __DIR__ . '/vendor/erusev/ParsedownExtra.php';
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -90,6 +92,7 @@ require_once __DIR__ . '/vendor/Lex/Parser.php';
 */
 
 // helper functions
+require_once __DIR__ . '/core/exceptions.php';
 require_once __DIR__ . '/core/functions.php';
 
 // register the Statamic autoloader

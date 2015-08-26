@@ -406,10 +406,11 @@ img {
   border: 0;
   -ms-interpolation-mode: bicubic; }
 
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
+html {
   box-sizing: border-box; }
+
+*, *::after, *::before {
+  box-sizing: inherit; }
 
 html, body {
   height: 100%; }
@@ -425,35 +426,38 @@ body {
   margin-left: auto;
   margin-right: auto;
   height: 100%; }
-  .container:after {
+  .container::after {
+    clear: both;
     content: "";
-    display: table;
-    clear: both; }
+    display: table; }
 
 .content, .content-home {
-  float: left;
-  display: block;
-  margin-right: 0%;
-  width: 62.5%;
+  width: 100%;
   background-color: #f5f5e6; }
-  .content:last-child, .content-home:last-child {
-    margin-right: 0; }
-  .content .page-header, .content-home .page-header {
-    float: left;
-    display: block;
-    margin-right: 0%;
-    width: 40%;
-    padding-left: 45px; }
-    .content .page-header:last-child, .content-home .page-header:last-child {
-      margin-right: 0; }
-  .content .body, .content-home .body {
-    padding: 45px 45px 45px 45px;
-    float: left;
-    display: block;
-    margin-right: 0%;
-    width: 100%; }
-    .content .body:last-child, .content-home .body:last-child {
-      margin-right: 0; }
+  @media screen and (min-width: 770px) {
+    .content, .content-home {
+      float: left;
+      display: block;
+      margin-right: 0%;
+      width: 62.5%; }
+      .content:last-child, .content-home:last-child {
+        margin-right: 0; }
+      .content .page-header, .content-home .page-header {
+        float: left;
+        display: block;
+        margin-right: 0%;
+        width: 40%;
+        padding-left: 45px; }
+        .content .page-header:last-child, .content-home .page-header:last-child {
+          margin-right: 0; }
+      .content .body, .content-home .body {
+        padding: 45px 45px 45px 45px;
+        float: left;
+        display: block;
+        margin-right: 0%;
+        width: 100%; }
+        .content .body:last-child, .content-home .body:last-child {
+          margin-right: 0; } }
 
 .content-home {
   background-color: #5ee0aa;
@@ -484,22 +488,27 @@ body {
   border-bottom: 1px dotted #d45a8a; }
 
 .body-container {
-  margin-top: 255px;
   padding-left: 25px; }
+  @media screen and (min-width: 770px) {
+    .body-container {
+      margin-top: 255px; } }
 
 .footer-container {
   font-size: 0.75em;
   padding: 100px 45px 45px 45px; }
 
 .artwork {
-  position: relative;
-  height: 100%;
-  float: left;
-  display: block;
-  margin-right: 0%;
-  width: 37.5%; }
-  .artwork:last-child {
-    margin-right: 0; }
+  display: none; }
+  @media screen and (min-width: 770px) {
+    .artwork {
+      position: relative;
+      height: 100%;
+      float: left;
+      display: block;
+      margin-right: 0%;
+      width: 37.5%; }
+      .artwork:last-child {
+        margin-right: 0; } }
 
 .embellishment {
   position: relative;

@@ -33,12 +33,15 @@ fields:
   password_confirmation:
     type: password
     display: Password Confirmation
+    save_value: false
     validate:
       length: 5
     error_messages: "Passwords do not match."
     instructions: "Passwords must match."
   show_password:
+    display: Password
     type: show_password
+    save_value: false
   roles:
     type: checkboxes
     display: Roles

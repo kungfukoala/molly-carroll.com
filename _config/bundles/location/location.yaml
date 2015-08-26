@@ -30,6 +30,7 @@ interaction_double_click_zoom: true
 interaction_box_zoom: true
 interaction_touch_zoom: true
 interaction_draggable: true
+interaction_tap: true
 
 # mapping service
 # not all of these options might be used for different services

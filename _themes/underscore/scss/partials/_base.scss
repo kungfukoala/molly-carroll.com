@@ -32,11 +32,14 @@ body {
 	height:100%;
 }
 .content {
-	@include span-columns(5);
-	@extend %content-background;
-	background-color:$tertiary;
-	.page-header { @include span-columns(2 of 5); padding-left:$padding-medium; }
-	.body { padding:$padding-medium $padding-medium $padding-medium $padding-medium; @include span-columns(5 of 5); }
+  width:100%;
+  @extend %content-background;
+  background-color:$tertiary;
+  @include min-screen(nth($res-collection, 3)*1px) {
+  	@include span-columns(5);
+  	.page-header { @include span-columns(2 of 5); padding-left:$padding-medium; }
+  	.body { padding:$padding-medium $padding-medium $padding-medium $padding-medium; @include span-columns(5 of 5); }
+  }
 }
 .content-home {
 	@extend .content;
@@ -55,14 +58,23 @@ body {
 	border-bottom:1px dotted $magenta;
 }
 .body-container {
-	margin-top:255px;
-	padding-left:$padding-small;
+  padding-left:$padding-small;
+  @include min-screen(nth($res-collection, 3)*1px) {
+  	margin-top:255px;
+  }
 }
 .footer-container {
 	font-size:$font-small;
 	padding:$padding-large $padding-medium $padding-medium $padding-medium;
 }
-.artwork { position:relative; height:100%; @include span-columns(3); }
+.artwork { 
+  display:none;
+  @include min-screen(nth($res-collection, 3)*1px) {
+    position:relative;
+    height:100%;
+    @include span-columns(3);
+  }
+}
 .embellishment { position:relative; width:368px; }
 .face {
 	position:absolute;

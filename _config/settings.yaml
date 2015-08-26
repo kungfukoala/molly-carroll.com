@@ -27,7 +27,7 @@ _site_name: Molly Carroll
 _content_root: _content
 
 # Used for permalinks
-_site_url: http://mollycarroll.com
+_site_url: http://molly-carroll.com
 
 # Folder name of your desired theme
 _theme: underscore

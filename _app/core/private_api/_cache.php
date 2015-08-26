@@ -128,6 +128,9 @@ class _Cache
 
         // create a master list of files that need updating
         $changed_files = array_unique(array_merge($new_files, $updated));
+        
+        // store a list of changed URLs
+        $changed_urls = array();
 
         // add to the cache if files have been updated
         if (count($changed_files)) {
@@ -269,6 +272,8 @@ class _Cache
                     'path'   => $local_path,
                     'file'   => $slug_with_extension
                 );
+                
+                $changed_urls[$data['url']] = true;
             }
         }
 
@@ -283,9 +288,12 @@ class _Cache
 
                 $files_changed = true;
 
-                // remove from url cache
+                // get URL
                 $url = (isset($cache['content'][$folder][$path]['url'])) ? $cache['content'][$folder][$path]['url'] : null;
-                if (!is_null($url)) {
+                
+                // only remove from URLs list if not in changed URLs list
+                if (!isset($changed_urls[$url]) && !is_null($url)) {
+                    // remove from url cache
                     unset($cache['urls'][$url]);
                 }
 
@@ -352,7 +360,11 @@ class _Cache
                     // set up base variables
                     $parent = null;
 
-                    $order_key = ltrim($item['path'], $home);
+                    // Trim off home and any /page.md ending so that all URLs are treated
+                    // equally regardless of page type.
+
+                    $order_key = str_replace('/page.md', '', str_replace($home, '', $item['path']));
+
                     $sub_order_key = $item['data']['_order_key'];
 
                     // does this have a parent (and if so, what is it?)
@@ -399,80 +411,81 @@ class _Cache
         // mark ending of content cache measuring
         Debug::markEnd($content_hash);
 
-
-        // build member cache
-        // ----------------------------------------------------------------
-
-        // start measuring
-        $member_hash = Debug::markStart('caching', 'member');
-
-        // grab a list of existing members
-        $users = File::globRecursively(Path::tidy(Config::getConfigPath() . '/users/*'), 'yaml');
-
-        // clone for reuse, set up our list of updated users
-        $updated = array();
-        $current_users = array();
-        
-        foreach ($users as $user) {
-            $local_file = Path::trimFilesystemFromContent(Path::standardize($user));
+        if (!Config::get('disable_member_cache')) {
+            // build member cache
+            // ----------------------------------------------------------------
+    
+            // start measuring
+            $member_hash = Debug::markStart('caching', 'member');
+    
+            // grab a list of existing members
+            $users = File::globRecursively(Path::tidy(Config::getConfigPath() . '/users/*'), 'yaml');
+    
+            // clone for reuse, set up our list of updated users
+            $updated = array();
+            $current_users = array();
             
-            // add to current users
-            $current_users[] = $local_file;
-            
-            // is this updated?
-            if ($last && File::getLastModified($user) >= $last) {
-                $updated[] = $local_file;
-            }
-        }
-        
-        // get users from the file
-        $members = unserialize(File::get($members_file));
-
-        // get a diff of users we know about and files currently existing
-        $known_users = array();
-        if (!empty($members)) {
-            foreach ($members as $username => $member_data) {
-                $known_users[$username] = $member_data['_path'];
-            }
-        }
-
-        // create a master list of users that need updating
-        $changed_users = array_unique(array_merge(array_diff($current_users, $known_users), $updated));
-        $removed_users = array_diff($known_users, $current_users);
-
-        if (count($changed_users)) {
-            $members_changed = true;
-
-            foreach ($changed_users as $user_file) {
-                // file parsing
-                $last_slash  = strrpos($user_file, '/') + 1;
-                $last_dot    = strrpos($user_file, '.');
-                $username    = substr($user_file, $last_slash, $last_dot - $last_slash);
-                $content     = substr(File::get($user_file), 3);
-                $divide      = strpos($content, "\n---");
-                $data        = YAML::parse(trim(substr($content, 0, $divide)));
-                $bio_raw     = trim(substr($content, $divide + 4));
-
-                $data['_path'] = $user_file;
-
-                if ($bio_raw) {
-                    $data['biography'] = 'true';
-                    $data['biography_raw'] = 'true';
+            foreach ($users as $user) {
+                $local_file = Path::trimFilesystemFromContent(Path::standardize($user));
+                
+                // add to current users
+                $current_users[] = $local_file;
+                
+                // is this updated?
+                if ($last && File::getLastModified($user) >= $last) {
+                    $updated[] = $local_file;
                 }
-
-                $members[$username] = $data;
             }
+            
+            // get users from the file
+            $members = unserialize(File::get($members_file));
+    
+            // get a diff of users we know about and files currently existing
+            $known_users = array();
+            if (!empty($members)) {
+                foreach ($members as $username => $member_data) {
+                    $known_users[$username] = $member_data['_path'];
+                }
+            }
+    
+            // create a master list of users that need updating
+            $changed_users = array_unique(array_merge(array_diff($current_users, $known_users), $updated));
+            $removed_users = array_diff($known_users, $current_users);
+    
+            if (count($changed_users)) {
+                $members_changed = true;
+    
+                foreach ($changed_users as $user_file) {
+                    // file parsing
+                    $last_slash  = strrpos($user_file, '/') + 1;
+                    $last_dot    = strrpos($user_file, '.');
+                    $username    = substr($user_file, $last_slash, $last_dot - $last_slash);
+                    $content     = substr(File::get($user_file), 3);
+                    $divide      = strpos($content, "\n---");
+                    $data        = YAML::parse(trim(substr($content, 0, $divide)));
+                    $bio_raw     = trim(substr($content, $divide + 4));
+    
+                    $data['_path'] = $user_file;
+    
+                    if ($bio_raw) {
+                        $data['biography'] = 'true';
+                        $data['biography_raw'] = 'true';
+                    }
+    
+                    $members[$username] = $data;
+                }
+            }
+    
+            // loop through all cached content for deleted files
+            // this isn't as expensive as you'd think in real-world situations
+            if (!empty($removed_users)) {
+                $members_changed = true;
+                $members = array_diff_key($members, $removed_users);
+            }
+    
+            // mark ending of member cache measuring
+            Debug::markEnd($member_hash);
         }
-
-        // loop through all cached content for deleted files
-        // this isn't as expensive as you'd think in real-world situations
-        if (!empty($removed_users)) {
-            $members_changed = true;
-            $members = array_diff_key($members, $removed_users);
-        }
-
-        // mark ending of member cache measuring
-        Debug::markEnd($member_hash);
 
 
 
@@ -525,25 +538,27 @@ class _Cache
         // mark ending of settings cache file write measuring
         Debug::markEnd($settings_hash);
 
-        // add file-writing to settings-cache actions
-        $member_hash = Debug::markStart('caching', 'member');
-
-        // store the members cache
-        if ($members_changed) {
-            if (File::put($members_file, serialize($members)) === false) {
-                if (!File::isWritable($members_file)) {
-                    Log::fatal('Member cache file is not writable.', 'core', 'member-cache');
+        if (!Config::get('disable_member_cache')) {
+            // add file-writing to settings-cache actions
+            $member_hash = Debug::markStart('caching', 'member');
+    
+            // store the members cache
+            if ($members_changed) {
+                if (File::put($members_file, serialize($members)) === false) {
+                    if (!File::isWritable($members_file)) {
+                        Log::fatal('Member cache file is not writable.', 'core', 'member-cache');
+                    }
+    
+                    Log::fatal('Could not write to the member cache file.', 'core', 'member-cache');
+                    return false;
                 }
-
-                Log::fatal('Could not write to the member cache file.', 'core', 'member-cache');
-                return false;
             }
+    
+            // mark ending of member cache file write measuring
+            Debug::markEnd($member_hash);
         }
 
-        // mark ending of member cache file write measuring
-        Debug::markEnd($member_hash);
-
-        File::put($time_file, $now);
+        File::put($time_file, $now - 1);
         return true;
     }
 

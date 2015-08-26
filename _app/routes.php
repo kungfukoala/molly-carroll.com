@@ -8,7 +8,7 @@ $app->map('/TRIGGER/:namespace/:hook(/:segments+)', function ($namespace, $hook,
 
     // process uploaded files
     if ($app->request()->isPost()) {
-        _Upload::standardizeFileUploads();
+        $_FILES = _Upload::standardizeFileUploads($_FILES);
     }
     
     /*
@@ -137,7 +137,7 @@ $app->map('/(:segments+)', function ($segments = array()) use ($app) {
 
     // process uploaded files
     if ($app->request()->isPost()) {
-        _Upload::standardizeFileUploads();
+        $_FILES = _Upload::standardizeFileUploads($_FILES);
     }
     
     global $is_debuggable_route;
@@ -262,12 +262,14 @@ $app->map('/(:segments+)', function ($segments = array()) use ($app) {
 
     // check for routes
     // allows the route file to run without "route:" as the top level array key (backwards compatibility)
-    $found_route  = null;
-    $routes       = array_get($app->config, '_routes:routes', array_get($app->config, '_routes'));
+    $found_route        = null;
+    $routes             = array_get($app->config, '_routes:routes', array_get($app->config, '_routes'));
+    $parsed_route_data  = array();
 
     // look for matching routes
     if (is_array($routes)) {
         foreach ($routes as $route_url => $route_data) {
+            // check for standard wildcards
             if (preg_match('#^' . str_replace(array('.', '*'), array('\.', '.*?'), $route_url) . '$#i', $current_url, $matches)) {
                 // found a route, save it and get out
                 $found_route = array(
@@ -275,6 +277,38 @@ $app->map('/(:segments+)', function ($segments = array()) use ($app) {
                     'data' => $route_data
                 );
                 break;
+                
+            // check for named wildcards
+            } elseif (strpos($route_url, '{') !== false) {
+                // get segment names
+                preg_match_all('/{\s*([a-zA-Z0-9_\-]+)\s*}/', $route_url, $matches);
+                
+                // nothing found, skip it
+                if (!count($matches)) {
+                    continue;
+                }
+                
+                // these are the keys we're looking for
+                $named_keys   = $matches[1];
+                
+                // create regex out of the route
+                $fixed_route  = preg_replace('/{\s*[a-zA-Z0-9_\-]+\s*}/', '([^/]*)', str_replace(array('.', '*'), array('\.', '[^\/]*'), $route_url));
+                
+                // make me a match
+                if (preg_match('#^' . $fixed_route . '$#i', $current_url, $new_matches)) {
+                    // shift off the first item
+                    array_shift($new_matches);
+                    
+                    // merge values with keys, these will be merged in later
+                    $parsed_route_data = URL::sanitize(array_combine($named_keys, $new_matches));
+                    
+                    // found a route, save it and get ou
+                    $found_route = array(
+                        'url' => $route_url,
+                        'data' => $route_data
+                    );
+                    break;
+                }
             }
         }
     }
@@ -289,14 +323,17 @@ $app->map('/(:segments+)', function ($segments = array()) use ($app) {
 
         $route     = $current_route;
         $template  = $route;
-        $data      = Content::get($complete_current_url) + $app->config;
+        $data      = $parsed_route_data + Content::get($complete_current_url) + $app->config;
 
         if (is_array($route)) {
-            $template = isset($route['template']) ? $route['template'] : 'default';
+            $template = array_get($route, 'template', 'default');
 
             if (isset($route['layout'])) {
                 $data['_layout'] = $route['layout'];
             }
+
+            // merge extra vars into data
+            $data = $route + $data;
         }
 
         $template_list = array($template);
@@ -322,19 +359,25 @@ $app->map('/(:segments+)', function ($segments = array()) use ($app) {
 
     // url is taxonomy-based
     } elseif (Taxonomy::isTaxonomyURL($path)) {
-        list($type, $slug) = Taxonomy::getCriteria($path);
+        $taxonomy = Taxonomy::getCriteria($path);
 
         // create data array
         $data = array_merge(Config::getAll(), array(
             'homepage'       => Config::getSiteRoot(),
             'raw_url'        => Request::getResourceURI(),
             'page_url'       => Request::getResourceURI(),
-            'taxonomy_slug'  => urldecode($slug),
-            'taxonomy_name'  => Taxonomy::getTaxonomyName($type, $slug)
+            'taxonomy_slug'  => $taxonomy['slug'],
+            'taxonomy_name'  => Taxonomy::getTaxonomyName($taxonomy['type'], $taxonomy['slug'])
         ));
 
         $template_list[] = "taxonomies";
-        $template_list[] = $type;
+        $template_list[] = $taxonomy['type'];
+
+        if ( ! $taxonomy['slug']) {
+            $template_list[] = "taxonomy-index";
+            $template_list[] = $taxonomy['type'] . "-index";
+        }
+
         $content_found = true;
     }
 
@@ -536,6 +579,10 @@ $app->map('/(:segments+)', function ($segments = array()) use ($app) {
         $app->lastModified(Cache::getLastCacheUpdate());
         $app->expires('+'.Config::get('http_cache_expires', '30 minutes'));
     }
+    
+    // append the response code
+    $data['_http_status']  = $response_code;
+    $data['_response']     = $response_code;
 
     // and go!
     $app->render(null, $data, $response_code);
@@ -628,6 +675,10 @@ $app->map('/(:segments+)', function ($segments = array()) use ($app) {
         $app->lastModified(Cache::getLastCacheUpdate());
         $app->expires('+'.Config::get('http_cache_expires', '30 minutes'));
     }
+
+    // append the response code
+    $data['_http_status']  = $response_code;
+    $data['_response']     = $response_code;
 
     // and go!
     $app->render(null, $data, $response_code);

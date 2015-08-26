@@ -1,9 +1,11 @@
 <div id="subnav">
   <ul>
-    <li><a href="<?php echo $app->urlFor("pages"); ?>">Pages</a></li>
+    <li><a href="<?php echo $app->urlFor("pages"); ?>"><?php echo Localization::fetch('pages') ?></a></li>
     <li class="separator">&nbsp;</li>
     <?php foreach($listings as $listing): ?>
-      <li><a href="entries?path=<?php echo $listing['slug']?>" <?php if ($listing['slug'] === $path): ?> class="active" <?php endif ?>><?php echo $listing['title'] ?></a></li>
+      <?php if (CP_Helper::is_page_visible($listing)): ?>
+        <li><a href="entries?path=<?php echo $listing['slug']?>" <?php if ($listing['slug'] === $path): ?> class="active" <?php endif ?>><?php echo $listing['title'] ?></a></li>
+      <?php endif ?>
     <?php endforeach ?>
   </ul>
 </div>
@@ -13,7 +15,7 @@
   <div id="status-bar">
     <div class="status-block">
       <span class="muted"><?php echo Localization::fetch('viewing_all')?> <?php echo Localization::fetch('entries', null, true)?> <?php echo Localization::fetch('in')?></span>
-      <span class="folder">/<?php print $folder; ?>/</span>
+      <span class="folder"><?php print $folder; ?></span>
     </div>
     <ul>
       <li>

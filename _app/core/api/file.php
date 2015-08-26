@@ -61,8 +61,9 @@ class File
     /**
      * Atomically dump content into a file.
      *
-     * @param  string  $filename  Path of file to store
-     * @param  string  $content   Content to store
+     * @param string  $filename  Path of file to store
+     * @param string  $content   Content to store
+     * @param int  $mode  File mode to set 
      * @return void
      */
     public static function put($filename, $content, $mode = null)
@@ -70,13 +71,38 @@ class File
         Debug::increment('files', 'written');
         $fs = new Filesystem();
         
+        // custom umask and file mode
+//        $custom_umask  = Config::get('_umask', false);
+        $custom_mode   = Config::get('_mode', false);
+        $old_umask     = null;
+        
+        // Dipper accurately recognizes octal numbers, where the others don't
+        if (Config::get('yaml_mode') !== 'quick') {
+//            $custom_umask = octdec($custom_umask);
+            $custom_mode  = octdec($custom_mode);
+        }
+        
+        // if a custom umask was set, set it and remember the old one
+//        if ($custom_umask !== false) {
+//            $old_umask = umask($custom_umask);
+//        }
+        
         if (File::exists($filename)) {
             $mode = intval(substr(sprintf('%o', fileperms($filename)), -4), 8);
         } elseif (is_null($mode)) {
-            $mode = 0755;
+            $mode = ($custom_mode !== false) ? $custom_mode : 0755;
         }
         
-        $fs->dumpFile($filename, $content, $mode);
+        try {
+            $fs->dumpFile($filename, $content, $mode);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+        
+        // if a custom umask was set, replace the old value
+//        if ($custom_umask !== false) {
+//            umask($old_umask);
+//        }
     }
 
 
@@ -175,30 +201,32 @@ class File
      * @return boolean
      */
     public static function inBasePath($path) {
-        return stripos($path, BASE_PATH);
+        return stripos($path, BASE_PATH) !== false;
     }
 
     /**
-     * Upload a file.
-     *
-     * @param string  $file  Name of file
-     * @param string  $target  target of file
-     * @param string  $filename  Name of new file
-     * @return bool
-     **/
-    public static function upload($file, $destination, $add_root_variable = false)
+     * Upload a file
+     * 
+     * @param  array   $file               The file array
+     * @param  string  $destination        Where to upload
+     * @param  boolean $add_root_variable  Whether or not to prepend {{ _site_root }}
+     * @param  mixed   $renamed_file       A custom filename
+     * @return string                      Path to uploaded asset
+     */
+    public static function upload($file, $destination, $add_root_variable = false, $renamed_file = false)
     {
         Folder::make($destination);
 
         $info      = pathinfo($file['name']);
         $extension = $info['extension'];
+        $filename  = $renamed_file ?: $info['filename'];
 
         // build filename
-        $new_filename = Path::assemble(BASE_PATH, $destination, $info['filename'] . '.' . $extension);
+        $new_filename = Path::assemble(BASE_PATH, $destination, $filename . '.' . $extension);
 
         // check for dupes
         if (File::exists($new_filename)) {
-            $new_filename = Path::assemble(BASE_PATH, $destination, $info['filename'] . '-' . date('YmdHis') . '.' . $extension);
+            $new_filename = Path::assemble(BASE_PATH, $destination, $filename . '-' . date('YmdHis') . '.' . $extension);
         }
 
         // Check if destination is writable

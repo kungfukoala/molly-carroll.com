@@ -24,6 +24,9 @@
 @import 'bourbon';
 // Settings
 @import 'settings/settings';
+@import 'settings/querysettings';
+// Media Queries
+@import 'partials/mediaqueries';
 // Helpers
 @import 'helpers/helpers';
 // Bourbon Neat
