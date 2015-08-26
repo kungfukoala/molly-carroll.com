@@ -81,16 +81,16 @@ $tertiary-font: 	"lust", georgia, serif;
 ////////////////////
 $nav-background: "mc_nav_background_1.0.png";
 $content-background: "mc_contentbackground_1.1.png";
-%content-background { background:url(#{$img-assetpath}#{$content-background}) right top no-repeat; }
+%content-background { background:url(#{$img-assetpath}#{$content-background}) right top no-repeat, url(#{$img-assetpath}#{$content-background}) -170px -280px no-repeat; }
 $home-background: "mc_homebackground_1.0.png";
-%home-background { background:url(#{$img-assetpath}#{$home-background}) right top no-repeat; }
+%home-background { background:url(#{$img-assetpath}#{$home-background}) right top no-repeat, url(#{$img-assetpath}#{$content-background}) -170px -280px no-repeat; }
 $color-band: "mc_colorband.jpg";
 %color-band { background:url(#{$img-assetpath}#{$color-band}); }
 $artwork-band: "mc_artwork_1.1.jpg";
 %artwork-band { background:url(#{$img-assetpath}#{$artwork-band}); }
 $face-artwork: "mc_face_1.0.png";
 %face-artwork { background:url(#{$img-assetpath}#{$face-artwork}); }
-$background: "mc_background.jpg";
+$background: "mc_background1.1.jpg";
 %background { background:url(#{$img-assetpath}#{$background}); }
 ////////////////////
 //

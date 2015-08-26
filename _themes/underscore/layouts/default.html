@@ -16,12 +16,13 @@
 		<nav class="nav-container">
 			{{ theme:partial src="nav" }}
 		</nav>
+    <div class="logo-2"><a href="{{ homepage }}"><img src="{{ theme:img src="mc_logo_2.1.png" }}" width="417" height="186" alt="Molly Carroll"></a></div>
 		<div class="content{{ if !segment_1 }}-home{{ endif }}">
-			
-			<div class="body-container">
+			<div class="body-container{{ if !segment_1 }}-home{{ endif }}">
 				{{ quote|title }}
 				{{ layout_content }}
 			</div>
+      
 			<footer class="footer-container">
 				Copyright {{ current_date format="Y"}} Flourish - All Artwork is by Molly Carroll
 			</footer>

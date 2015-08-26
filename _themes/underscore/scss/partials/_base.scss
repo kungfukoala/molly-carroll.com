@@ -48,9 +48,12 @@ body {
 .content-home {
 	@extend .content;
 	@extend %home-background;
-	background-color:$green;
+	background-color:whitesmoke;
 	.page-header { @include span-columns(2 of 5); padding-left:$padding-medium; }
 	.body { padding:$padding-medium $padding-medium $padding-medium $padding-medium; @include span-columns(5 of 5); }
+}
+.home-book {
+  text-align:center;
 }
 .home-introduction {
   @include min-screen(nth($res-collection, 3)*1px) {
@@ -68,6 +71,9 @@ body {
   @include min-screen(nth($res-collection, 3)*1px) {
     padding-left:$padding-small;
   	margin-top:255px;
+    &-home {
+      margin-top:185px;
+    }
   }
 }
 .footer-container {
@@ -198,4 +204,13 @@ body {
 	right:15px;
 	width:417px;
 	height:186px;
+}
+.logo-2 {
+	position:absolute;
+	z-index:$z-logo;
+	top:120px;
+	left:-65px;
+	width:417px;
+	height:80px;
+  overflow:hidden;
 }
