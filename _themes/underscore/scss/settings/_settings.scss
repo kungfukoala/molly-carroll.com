@@ -60,6 +60,7 @@ $purple:			rgb(134,106,149);
 $magenta:			rgb(212,90,138);
 $silver:			rgb(208,208,203);  	// Silver
 $cream:				rgb(245,245,230); 	// Cream
+$peach:				rgb(252,226,198);
 ////////////////////
 //
 // Typography
@@ -74,24 +75,6 @@ $font-large:		  1.4em;
 $primary-font: 		"ff-meta-web-pro", helvetica, san-serif;
 $secondary-font: 	"lust", georgia, serif;
 $tertiary-font: 	"lust", georgia, serif;
-////////////////////
-//
-// Images
-//
-////////////////////
-$nav-background: "mc_nav_background_1.0.png";
-$content-background: "mc_contentbackground_1.1.png";
-%content-background { background:url(#{$img-assetpath}#{$content-background}) right top no-repeat, url(#{$img-assetpath}#{$content-background}) -170px -280px no-repeat; }
-$home-background: "mc_homebackground_1.0.png";
-%home-background { background:url(#{$img-assetpath}#{$home-background}) right top no-repeat, url(#{$img-assetpath}#{$content-background}) -170px -280px no-repeat; }
-$color-band: "mc_colorband.jpg";
-%color-band { background:url(#{$img-assetpath}#{$color-band}); }
-$artwork-band: "mc_artwork_1.1.jpg";
-%artwork-band { background:url(#{$img-assetpath}#{$artwork-band}); }
-$face-artwork: "mc_face_1.0.png";
-%face-artwork { background:url(#{$img-assetpath}#{$face-artwork}); }
-$background: "mc_background1.1.jpg";
-%background { background:url(#{$img-assetpath}#{$background}); }
 ////////////////////
 //
 // Z-Index

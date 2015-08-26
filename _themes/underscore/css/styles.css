@@ -380,6 +380,20 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+img {
+  width: auto\9;
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+  border: 0;
+  -ms-interpolation-mode: bicubic; }
+
+html {
+  box-sizing: border-box; }
+
+*, *::after, *::before {
+  box-sizing: inherit; }
+
 .content, .content-home {
   background: url(/_themes/underscore/img/mc_contentbackground_1.1.png) right top no-repeat, url(/_themes/underscore/img/mc_contentbackground_1.1.png) -170px -280px no-repeat; }
 
@@ -396,21 +410,10 @@ table {
   background: url(/_themes/underscore/img/mc_face_1.0.png); }
 
 body {
-  background: url(/_themes/underscore/img/mc_background1.1.jpg); }
-
-img {
-  width: auto\9;
-  height: auto;
-  max-width: 100%;
-  vertical-align: middle;
-  border: 0;
-  -ms-interpolation-mode: bicubic; }
-
-html {
-  box-sizing: border-box; }
-
-*, *::after, *::before {
-  box-sizing: inherit; }
+  background: url(/_themes/underscore/img/mc_background1.1.jpg) 0px 200px repeat-x; }
+  @media screen and (min-width: 770px) {
+    body {
+      background: url(/_themes/underscore/img/mc_background1.1.jpg); } }
 
 html, body {
   height: 100%; }
@@ -419,7 +422,7 @@ body {
   font-size: 1.2em;
   font-family: "ff-meta-web-pro", helvetica, san-serif;
   color: black;
-  background-color: #f5f5e6; }
+  background-color: #fce2c6; }
   @media screen and (min-width: 770px) {
     body {
       font-size: 0.9em; } }
@@ -589,7 +592,6 @@ body {
 
 .nav {
   width: 100%;
-  float: left;
   margin: 20px 0 2em 0;
   padding: 0;
   list-style: none; }
@@ -606,8 +608,10 @@ body {
     color: #d0d0cb;
     border-bottom: 1px dotted #d0d0cb; }
   @media screen and (min-width: 770px) {
-    .nav li {
-      float: left; } }
+    .nav {
+      float: left; }
+      .nav li {
+        float: left; } }
 
 .nav-secondary {
   padding-left: 45px; }
@@ -633,13 +637,14 @@ body {
   width: 141px;
   height: 186px; }
 
-.logo {
-  position: absolute;
-  z-index: 1000;
-  top: 120px;
-  left: 15px;
-  width: 336px;
-  height: 78px; }
+@media screen and (min-width: 770px) {
+  .logo {
+    position: absolute;
+    z-index: 1000;
+    top: 120px;
+    left: 15px;
+    width: 336px;
+    height: 78px; } }
 
 body {
   -webkit-font-smoothing: antialiased; }
