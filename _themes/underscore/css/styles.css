@@ -502,12 +502,14 @@ body {
   padding-top: 80px;
   padding-right: 1.2em;
   padding-left: 1.2em; }
+  .body-container-home {
+    padding-top: 55px; }
   @media screen and (min-width: 770px) {
     .body-container {
       padding-left: 25px;
       margin-top: 255px; }
       .body-container-home {
-        margin-top: 185px; } }
+        margin-top: 105px; } }
 
 .footer-container {
   float: left;
@@ -605,6 +607,9 @@ body {
     letter-spacing: 0.0625em;
     margin-right: 0.875em;
     border-bottom: 1px dotted black; }
+  .nav .social-icon {
+    border-bottom: none;
+    float: left; }
   .nav .current {
     color: #d0d0cb;
     border-bottom: 1px dotted #d0d0cb; }
