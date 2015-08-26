@@ -13,10 +13,11 @@
 </head>
 <body>
 	<div class="container">
+		<nav class="nav-container">
+			{{ theme:partial src="nav" }}
+		</nav>
 		<div class="content{{ if !segment_1 }}-home{{ endif }}">
-			<nav class="nav-container">
-				{{ theme:partial src="nav" }}
-			</nav>
+			
 			<div class="body-container">
 				{{ quote|title }}
 				{{ layout_content }}

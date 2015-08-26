@@ -381,10 +381,10 @@ table {
   border-spacing: 0; }
 
 .content, .content-home {
-  background: url(/_themes/underscore/img/mc_nav_background_1.0.png) center top no-repeat, url(/_themes/underscore/img/mc_contentbackground_1.1.png) right top no-repeat; }
+  background: url(/_themes/underscore/img/mc_contentbackground_1.1.png) right top no-repeat; }
 
 .content-home {
-  background: url(/_themes/underscore/img/mc_nav_background_1.0.png) center top no-repeat, url(/_themes/underscore/img/mc_homebackground_1.0.png) right top no-repeat; }
+  background: url(/_themes/underscore/img/mc_homebackground_1.0.png) right top no-repeat; }
 
 .color-band {
   background: url(/_themes/underscore/img/mc_colorband.jpg); }
@@ -416,10 +416,13 @@ html, body {
   height: 100%; }
 
 body {
-  font-size: 0.875em;
+  font-size: 1.7em;
   font-family: "ff-meta-web-pro", helvetica, san-serif;
   color: black;
   background-color: #f5f5e6; }
+  @media screen and (min-width: 770px) {
+    body {
+      font-size: 0.9em; } }
 
 .container {
   max-width: 100%;
@@ -434,6 +437,8 @@ body {
 .content, .content-home {
   width: 100%;
   background-color: #f5f5e6; }
+  .content .page-header, .content-home .page-header {
+    padding-bottom: 45px; }
   @media screen and (min-width: 770px) {
     .content, .content-home {
       float: left;
@@ -479,8 +484,9 @@ body {
     .content-home .body:last-child {
       margin-right: 0; }
 
-.home-introduction {
-  margin-right: 175px; }
+@media screen and (min-width: 770px) {
+  .home-introduction {
+    margin-right: 175px; } }
 
 .entry {
   margin-bottom: 45px;
@@ -488,13 +494,15 @@ body {
   border-bottom: 1px dotted #d45a8a; }
 
 .body-container {
-  padding-left: 25px; }
+  padding-right: 2em;
+  padding-left: 2em; }
   @media screen and (min-width: 770px) {
     .body-container {
+      padding-left: 25px;
       margin-top: 255px; } }
 
 .footer-container {
-  font-size: 0.75em;
+  font-size: 0.9em;
   padding: 100px 45px 45px 45px; }
 
 .artwork {
@@ -564,7 +572,10 @@ body {
   background-position: -1925px 0px; }
 
 .nav-container {
-  padding-left: 25px; }
+  padding-left: 2em; }
+  @media screen and (min-width: 770px) {
+    .nav-container {
+      padding-left: 25px; } }
 
 .nav {
   width: 100%;
@@ -572,24 +583,25 @@ body {
   margin: 20px 0 2em 0;
   padding: 0;
   list-style: none; }
-  .nav li {
-    float: left; }
   .nav a {
     display: block;
-    font-size: 1.1875em;
-    font-family: "ff-meta-serif-sc-web-pro", georgia, serif;
+    font-size: 1.7em;
+    font-family: "lust", georgia, serif;
     text-decoration: none;
     text-transform: lowercase;
     letter-spacing: 0.0625em;
     margin-right: 0.875em;
     border-bottom: 1px dotted #f5f5e6; }
+  @media screen and (min-width: 770px) {
+    .nav li {
+      float: left; } }
 
 .nav-secondary {
   padding-left: 45px; }
   .nav-secondary a {
     display: block;
     font-size: 1.1875em;
-    font-family: "ff-meta-serif-sc-web-pro", georgia, serif;
+    font-family: "lust", georgia, serif;
     color: #866a95;
     text-decoration: none;
     text-transform: lowercase;
@@ -636,7 +648,7 @@ h3 {
   font-size: 1.875em; }
 
 h4, .h4, .h5, .h6, h5, h6 {
-  font-family: "ff-meta-serif-sc-web-pro", georgia, serif;
+  font-family: "lust", georgia, serif;
   color: black; }
 
 h4, .h4, .h5, .h6 {

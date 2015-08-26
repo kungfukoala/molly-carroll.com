@@ -21,6 +21,9 @@ body {
 	color:$primary;
 	background-color:$tertiary;
 	@extend %background;
+  @include min-screen(nth($res-collection, 3)*1px) {
+  	font-size:$font-small;
+  }
 }
 ////////////////////
 //
@@ -34,6 +37,7 @@ body {
 .content {
   width:100%;
   @extend %content-background;
+  .page-header { padding-bottom:$padding-medium; }
   background-color:$tertiary;
   @include min-screen(nth($res-collection, 3)*1px) {
   	@include span-columns(5);
@@ -50,7 +54,9 @@ body {
 	.body { padding:$padding-medium $padding-medium $padding-medium $padding-medium; @include span-columns(5 of 5); }
 }
 .home-introduction {
-	margin-right:175px;
+  @include min-screen(nth($res-collection, 3)*1px) {
+    margin-right:175px;
+  }
 }
 .entry {
 	margin-bottom:$padding-medium;
@@ -58,8 +64,10 @@ body {
 	border-bottom:1px dotted $magenta;
 }
 .body-container {
-  padding-left:$padding-small;
+  padding-right:2em;
+  padding-left:2em;
   @include min-screen(nth($res-collection, 3)*1px) {
+    padding-left:$padding-small;
   	margin-top:255px;
   }
 }
@@ -136,17 +144,21 @@ body {
 // Navigation
 //
 ////////////////////
-.nav-container { padding-left:$padding-small; }
+.nav-container { 
+  padding-left:2em;
+  @include min-screen(nth($res-collection, 3)*1px) {
+  	padding-left:$padding-small;
+  }
+}
 .nav {
 	width:100%;
 	float:left;
 	margin:20px 0 2em 0;
 	padding:0;
 	list-style:none;
-	li { float:left; }
 	a {
 		display:block;
-		font-size:em(19);
+		font-size:$font-large;
 		font-family:$tertiary-font;
 		text-decoration:none;
 		text-transform:lowercase;
@@ -154,6 +166,9 @@ body {
 		margin-right:em(14);
 		border-bottom:1px dotted $cream;
 	}
+  @include min-screen(nth($res-collection, 3)*1px) {
+  	li { float:left; }
+  }
 }
 .nav-secondary {
 	padding-left:$padding-medium;
