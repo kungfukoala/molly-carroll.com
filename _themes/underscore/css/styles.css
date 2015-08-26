@@ -436,7 +436,7 @@ body {
 
 .content, .content-home {
   width: 100%;
-  background-color: #f5f5e6; }
+  background-color: whitesmoke; }
   .content .page-header, .content-home .page-header {
     padding-bottom: 45px; }
   @media screen and (min-width: 770px) {
@@ -625,22 +625,21 @@ body {
     color: #d0d0cb;
     border-bottom: 1px dotted #d0d0cb; }
 
+.monogram {
+  position: absolute;
+  z-index: 1000;
+  top: 185px;
+  right: 300px;
+  width: 141px;
+  height: 186px; }
+
 .logo {
   position: absolute;
   z-index: 1000;
-  top: 80px;
-  right: 15px;
-  width: 417px;
-  height: 186px; }
-
-.logo-2 {
-  position: absolute;
-  z-index: 1000;
   top: 120px;
-  left: -65px;
-  width: 417px;
-  height: 80px;
-  overflow: hidden; }
+  left: 15px;
+  width: 336px;
+  height: 78px; }
 
 body {
   -webkit-font-smoothing: antialiased; }

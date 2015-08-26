@@ -38,7 +38,7 @@ body {
   width:100%;
   @extend %content-background;
   .page-header { padding-bottom:$padding-medium; }
-  background-color:$tertiary;
+  background-color:whitesmoke;
   @include min-screen(nth($res-collection, 3)*1px) {
   	@include span-columns(5);
   	.page-header { @include span-columns(2 of 5); padding-left:$padding-medium; }
@@ -197,20 +197,19 @@ body {
 // Logo
 //
 ////////////////////
+.monogram {
+	position:absolute;
+	z-index:$z-logo;
+	top:185px;
+	right:300px;
+	width:141px;
+	height:186px;
+}
 .logo {
 	position:absolute;
 	z-index:$z-logo;
-	top:80px;
-	right:15px;
-	width:417px;
-	height:186px;
-}
-.logo-2 {
-	position:absolute;
-	z-index:$z-logo;
 	top:120px;
-	left:-65px;
-	width:417px;
-	height:80px;
-  overflow:hidden;
+	left:15px;
+	width:336px;
+	height:78px; 
 }
