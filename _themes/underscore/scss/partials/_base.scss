@@ -170,7 +170,7 @@ body {
 		text-transform:lowercase;
 		letter-spacing:em(1);
 		margin-right:em(14);
-		border-bottom:1px dotted $cream;
+		border-bottom:1px dotted black;
 	}
   .current { color:$silver; border-bottom:1px dotted $silver; }
   @include min-screen(nth($res-collection, 3)*1px) {

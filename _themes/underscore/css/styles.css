@@ -595,13 +595,13 @@ body {
   list-style: none; }
   .nav a {
     display: block;
-    font-size: 1.7em;
+    font-size: 1.4em;
     font-family: "lust", georgia, serif;
     text-decoration: none;
     text-transform: lowercase;
     letter-spacing: 0.0625em;
     margin-right: 0.875em;
-    border-bottom: 1px dotted #f5f5e6; }
+    border-bottom: 1px dotted black; }
   .nav .current {
     color: #d0d0cb;
     border-bottom: 1px dotted #d0d0cb; }
