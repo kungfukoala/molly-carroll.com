@@ -1,7 +1,39 @@
-<div class="home-book">
+<div class="container">
+  <div class="home-book">
+  <a href="{{ _site_root }}cracking-open">
   <img src="{{ _site_root }}_themes/underscore/img/CrackingOpen-MollyCarroll-Cover.png" width="555" height="547" alt="Cracking Open by Molly Carroll">
+  </a>
+  <div class="home-book-info">
+    <h4>Cracking Open</h4>
+    <i>by Molly Carroll</i>
+    <ul>
+      <li><a class="button" href="{{ _site_root }}cracking-open">Learn More</a></li>
+      <li>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="6CUH2ZXJNKMBW">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="8CRLZ5GH27BSC">
+        <input type="submit" value="Purchase" name="submit" title="PayPal - The safer, easier way to pay online!" class="paypal_btn button">
+        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+      </li>
+    </ul>
+  </div>
 </div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/ujBJKoVbvzo" frameborder="0" allowfullscreen></iframe>
+</div>
+<div class="container">
+  <div class="home-video">
+    <h3>TEDxTalk</h3>
+    <div class='embed-container'>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/ujBJKoVbvzo" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+  <div class="home-about">
+    <h3>About Molly</h3>
+    <img src="{{ _site_root }}assets/img/molly-carroll-portrait.jpg" width="518" height="345" alt="Molly Carroll Portrait">
+  </div>
+</div>
 <div class="home-introduction">
 	{{ content }}
 </div>

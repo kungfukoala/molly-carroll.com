@@ -380,6 +380,20 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+.embed-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%; }
+
+.embed-container iframe, .embed-container object, .embed-container embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
+
 img {
   width: auto\9;
   height: auto;
@@ -467,32 +481,6 @@ body {
         .content .body:last-child, .content-home .body:last-child {
           margin-right: 0; } }
 
-.content-home {
-  background-color: whitesmoke; }
-  .content-home .page-header {
-    float: left;
-    display: block;
-    margin-right: 0%;
-    width: 40%;
-    padding-left: 45px; }
-    .content-home .page-header:last-child {
-      margin-right: 0; }
-  .content-home .body {
-    padding: 45px 45px 45px 45px;
-    float: left;
-    display: block;
-    margin-right: 0%;
-    width: 100%; }
-    .content-home .body:last-child {
-      margin-right: 0; }
-
-.home-book {
-  text-align: center; }
-
-@media screen and (min-width: 770px) {
-  .home-introduction {
-    margin-right: 175px; } }
-
 .entry {
   margin-bottom: 45px;
   padding: 0 45px 45px 45px;
@@ -507,7 +495,7 @@ body {
   @media screen and (min-width: 770px) {
     .body-container {
       padding-left: 25px;
-      margin-top: 255px; }
+      margin-top: 175px; }
       .body-container-home {
         margin-top: 105px; } }
 
@@ -598,6 +586,8 @@ body {
   margin: 20px 0 2em 0;
   padding: 0;
   list-style: none; }
+  .nav li {
+    margin-bottom: 8px; }
   .nav a {
     display: block;
     font-size: 1.4em;
@@ -617,7 +607,10 @@ body {
     .nav {
       float: left; }
       .nav li {
-        float: left; } }
+        float: left;
+        margin-bottom: 0px; }
+      .nav .social-icon {
+        float: none; } }
 
 .nav-secondary {
   padding-left: 45px; }
@@ -634,6 +627,19 @@ body {
   .nav-secondary .current {
     color: #d0d0cb;
     border-bottom: 1px dotted #d0d0cb; }
+
+.button {
+  border: 3px solid #fce2c6;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  border-top-left-radius: 25px;
+  padding: 6px 12px;
+  background-color: transparent; }
 
 .monogram {
   position: absolute;
@@ -715,3 +721,68 @@ h6 {
 
 a {
   color: black; }
+
+.content-home {
+  background-color: whitesmoke; }
+  .content-home .page-header {
+    float: left;
+    display: block;
+    margin-right: 0%;
+    width: 40%;
+    padding-left: 45px; }
+    .content-home .page-header:last-child {
+      margin-right: 0; }
+  .content-home .body {
+    padding: 45px 45px 45px 45px;
+    float: left;
+    display: block;
+    margin-right: 0%;
+    width: 100%; }
+    .content-home .body:last-child {
+      margin-right: 0; }
+
+.home-book {
+  position: relative;
+  text-align: center;
+  margin-bottom: 65px; }
+
+@media screen and (min-width: 770px) {
+  .home-introduction {
+    margin-right: 175px; } }
+
+.home-video, .home-about {
+  float: left;
+  display: block;
+  margin-right: 0%;
+  width: 100%;
+  margin-bottom: 65px; }
+  .home-video:last-child, .home-about:last-child {
+    margin-right: 0; }
+  @media screen and (min-width: 770px) {
+    .home-video, .home-about {
+      float: left;
+      display: block;
+      margin-right: 0%;
+      width: 50%; }
+      .home-video:last-child, .home-about:last-child {
+        margin-right: 0; } }
+
+.home-book-info {
+  padding-left: 1em;
+  text-align: left; }
+  @media screen and (min-width: 770px) {
+    .home-book-info {
+      position: absolute;
+      left: 15px;
+      bottom: 45px;
+      padding-left: 0; } }
+  .home-book-info i {
+    margin-bottom: 10px; }
+  .home-book-info ul {
+    margin: 20px 0 2em 0;
+    padding: 0;
+    list-style: none; }
+  .home-book-info li {
+    margin-bottom: 15px; }
+  .home-book-info h4, .home-book-info .h4, .home-book-info .h5, .home-book-info .h6 {
+    margin-bottom: 0.5em; }

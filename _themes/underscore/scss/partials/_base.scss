@@ -45,21 +45,6 @@ body {
   	.body { padding:$padding-medium $padding-medium $padding-medium $padding-medium; @include span-columns(5 of 5); }
   }
 }
-.content-home {
-	@extend .content;
-	@extend %home-background;
-	background-color:whitesmoke;
-	.page-header { @include span-columns(2 of 5); padding-left:$padding-medium; }
-	.body { padding:$padding-medium $padding-medium $padding-medium $padding-medium; @include span-columns(5 of 5); }
-}
-.home-book {
-  text-align:center;
-}
-.home-introduction {
-  @include min-screen(nth($res-collection, 3)*1px) {
-    margin-right:175px;
-  }
-}
 .entry {
 	margin-bottom:$padding-medium;
 	padding:0 $padding-medium $padding-medium $padding-medium;
@@ -74,7 +59,7 @@ body {
   }
   @include min-screen(nth($res-collection, 3)*1px) {
     padding-left:$padding-small;
-  	margin-top:255px;
+  	margin-top:175px;
     &-home {
       margin-top:105px;
     }
@@ -165,6 +150,9 @@ body {
 	margin:20px 0 2em 0;
 	padding:0;
 	list-style:none;
+  li {
+    margin-bottom:8px;
+  }
 	a {
 		display:block;
 		font-size:$font-large;
@@ -182,7 +170,13 @@ body {
   .current { color:$silver; border-bottom:1px dotted $silver; }
   @include min-screen(nth($res-collection, 3)*1px) {
     float:left;
-  	li { float:left; }
+    li {
+      float:left;
+      margin-bottom:0px;
+    }
+    .social-icon {
+      float:none;
+    }
   }
 }
 .nav-secondary {
@@ -199,6 +193,15 @@ body {
 		border-bottom:1px dotted $purple;
 	}
 	.current { color:$silver; border-bottom:1px dotted $silver; }
+}
+.button {
+  border:3px solid $peach;
+  @include border-top-radius(25px);
+  @include border-right-radius(25px);
+  @include border-bottom-radius(25px);
+  @include border-left-radius(25px);
+  padding:6px 12px;
+  background-color:transparent;
 }
 ////////////////////
 //

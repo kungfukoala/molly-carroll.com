@@ -20,6 +20,7 @@
 // Resets
 @import 'helpers/normalize';
 @import 'helpers/reset';
+@import 'helpers/video-responsive';
 // Bourbon
 @import 'bourbon';
 // Settings
@@ -37,3 +38,4 @@
 @import 'partials/backgrounds';
 @import 'partials/base';
 @import 'partials/typography';
+@import 'pages/home';
