@@ -416,7 +416,11 @@ html {
       background: url(/_themes/underscore/img/mc_contentbackground_1.1.png) right top no-repeat, url(/_themes/underscore/img/mc_contentbackground_1.1.png) -170px -280px no-repeat; } }
 
 .content-column-home {
-  background: url(/_themes/underscore/img/mc_homebackground_1.0.png) right top no-repeat, url(/_themes/underscore/img/mc_contentbackground_1.1.png) -170px -280px no-repeat; }
+  background: url(/_themes/underscore/img/mc_homebackground_1.0.png) right top no-repeat;
+  background-size: 250px; }
+  @media screen and (min-width: 770px) {
+    .content-column-home {
+      background: url(/_themes/underscore/img/mc_homebackground_1.0.png) right top no-repeat, url(/_themes/underscore/img/mc_contentbackground_1.1.png) -170px -280px no-repeat; } }
 
 .color-band {
   background: url(/_themes/underscore/img/mc_colorband.jpg); }

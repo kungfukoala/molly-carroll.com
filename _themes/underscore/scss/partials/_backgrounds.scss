@@ -11,10 +11,15 @@ $content-background: "mc_contentbackground_1.1.png";
   @include min-screen(nth($res-collection, 3)*1px) {
     background:url(#{$img-assetpath}#{$content-background}) right top no-repeat, url(#{$img-assetpath}#{$content-background}) -170px -280px no-repeat;
   }
-  
 }
 $home-background: "mc_homebackground_1.0.png";
-%home-background { background:url(#{$img-assetpath}#{$home-background}) right top no-repeat, url(#{$img-assetpath}#{$content-background}) -170px -280px no-repeat; }
+%home-background { 
+  background:url(#{$img-assetpath}#{$home-background}) right top no-repeat;
+  background-size:250px;
+  @include min-screen(nth($res-collection, 3)*1px) {
+    background:url(#{$img-assetpath}#{$home-background}) right top no-repeat, url(#{$img-assetpath}#{$content-background}) -170px -280px no-repeat;
+  }
+}
 $color-band: "mc_colorband.jpg";
 %color-band { background:url(#{$img-assetpath}#{$color-band}); }
 $artwork-band: "mc_artwork_1.1.jpg";
