@@ -423,12 +423,6 @@ html {
 .face {
   background: url(/_themes/underscore/img/mc_face_1.0.png); }
 
-body {
-  background: url(/_themes/underscore/img/mc_background1.1.jpg) 0px 200px repeat-x; }
-  @media screen and (min-width: 770px) {
-    body {
-      background: url(/_themes/underscore/img/mc_background1.1.jpg); } }
-
 html, body {
   height: 100%; }
 
@@ -445,6 +439,7 @@ body {
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
+  width: 100%;
   height: 100%; }
   .container::after {
     clear: both;
@@ -452,18 +447,13 @@ body {
     display: table; }
 
 .content, .content-home {
-  width: 100%;
+  width: auto;
   background-color: whitesmoke; }
   .content .page-header, .content-home .page-header {
     padding-bottom: 45px; }
   @media screen and (min-width: 770px) {
     .content, .content-home {
-      float: left;
-      display: block;
-      margin-right: 0%;
-      width: 62.5%; }
-      .content:last-child, .content-home:last-child {
-        margin-right: 0; }
+      margin-right: 368px; }
       .content .page-header, .content-home .page-header {
         float: left;
         display: block;
@@ -481,23 +471,27 @@ body {
         .content .body:last-child, .content-home .body:last-child {
           margin-right: 0; } }
 
+.artwork {
+  display: none; }
+  @media screen and (min-width: 770px) {
+    .artwork {
+      display: block;
+      position: relative;
+      float: right;
+      height: 100%;
+      width: 368px; } }
+
 .entry {
   margin-bottom: 45px;
   padding: 0 45px 45px 45px;
   border-bottom: 1px dotted #d45a8a; }
 
 .body-container {
-  padding-top: 80px;
   padding-right: 1.2em;
   padding-left: 1.2em; }
-  .body-container-home {
-    padding-top: 55px; }
   @media screen and (min-width: 770px) {
     .body-container {
-      padding-left: 25px;
-      margin-top: 175px; }
-      .body-container-home {
-        margin-top: 105px; } }
+      padding-left: 25px; } }
 
 .footer-container {
   float: left;
@@ -508,19 +502,6 @@ body {
   padding: 100px 45px 45px 45px; }
   .footer-container:last-child {
     margin-right: 0; }
-
-.artwork {
-  display: none; }
-  @media screen and (min-width: 770px) {
-    .artwork {
-      position: relative;
-      height: 100%;
-      float: left;
-      display: block;
-      margin-right: 0%;
-      width: 37.5%; }
-      .artwork:last-child {
-        margin-right: 0; } }
 
 .embellishment {
   position: relative;
@@ -583,7 +564,7 @@ body {
 
 .nav {
   width: 100%;
-  margin: 20px 0 2em 0;
+  margin: 0;
   padding: 0;
   list-style: none; }
   .nav li {
@@ -604,13 +585,11 @@ body {
     color: #d0d0cb;
     border-bottom: 1px dotted #d0d0cb; }
   @media screen and (min-width: 770px) {
-    .nav {
-      float: left; }
-      .nav li {
-        float: left;
-        margin-bottom: 0px; }
-      .nav .social-icon {
-        float: none; } }
+    .nav li {
+      float: left;
+      margin-bottom: 0px; }
+    .nav .social-icon {
+      float: none; } }
 
 .nav-secondary {
   padding-left: 45px; }

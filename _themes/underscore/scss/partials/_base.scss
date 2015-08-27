@@ -1,26 +1,16 @@
 ////////////////////
-//////////////////
-//
-// Underscore
-// BASE
-// v 1.0
-//
-// TABLE OF CONTENTS
-//
-//
-//////////////////
-////////////////////
 //
 // Base
 //
 ////////////////////
-html, body { height:100%; }
+html, body { 
+  height:100%;
+}
 body {
 	font-size:$base-font-size;
 	font-family:$primary-font;
 	color:$primary;
 	background-color:$peach;
-	@extend %background;
   @include min-screen(nth($res-collection, 3)*1px) {
   	font-size:$font-small;
   }
@@ -32,17 +22,28 @@ body {
 ////////////////////
 .container {
 	@include outer-container;
+  width:100%;
 	height:100%;
 }
 .content {
-  width:100%;
+  width:auto;
   @extend %content-background;
+  background-color:$tertiary;
   .page-header { padding-bottom:$padding-medium; }
-  background-color:whitesmoke;
   @include min-screen(nth($res-collection, 3)*1px) {
-  	@include span-columns(5);
+    margin-right:$right-column-width;
   	.page-header { @include span-columns(2 of 5); padding-left:$padding-medium; }
   	.body { padding:$padding-medium $padding-medium $padding-medium $padding-medium; @include span-columns(5 of 5); }
+  }
+}
+.artwork { 
+  display:none;
+  @include min-screen(nth($res-collection, 3)*1px) {
+    display:block;
+    position:relative;
+    float:right;
+    height:100%;
+    width:$right-column-width;
   }
 }
 .entry {
@@ -51,18 +52,10 @@ body {
 	border-bottom:1px dotted $magenta;
 }
 .body-container {
-  padding-top:80px;
   padding-right:1.2em;
   padding-left:1.2em;
-  &-home {
-    padding-top:55px;
-  }
   @include min-screen(nth($res-collection, 3)*1px) {
     padding-left:$padding-small;
-  	margin-top:175px;
-    &-home {
-      margin-top:105px;
-    }
   }
 }
 .footer-container {
@@ -70,26 +63,18 @@ body {
 	font-size:$font-small;
 	padding:$padding-large $padding-medium $padding-medium $padding-medium;
 }
-.artwork { 
-  display:none;
-  @include min-screen(nth($res-collection, 3)*1px) {
-    position:relative;
-    height:100%;
-    @include span-columns(3);
-  }
-}
-.embellishment { position:relative; width:368px; }
+.embellishment { position:relative; width:$right-column-width; }
 .face {
 	position:absolute;
 	z-index:$z-face;
 	top:0px;
 	right:0px;
-	width:368px;
+	width:$right-column-width;
 	height:607px;
 	@extend %face-artwork;
 }
 .color-band {
-	width:368px;
+	width:$right-column-width;
 	height:433px;
 	@extend %color-band;
 }
@@ -108,11 +93,8 @@ body {
 .purple {
 	background-position:0px -431px;
 }
-.pink {
-	
-}
 .artwork-band {
-	width:368px;
+	width:$right-column-width;
 	height:100%;
 	@extend %artwork-band;
 }
@@ -147,7 +129,7 @@ body {
 }
 .nav {
 	width:100%;
-	margin:20px 0 2em 0;
+	margin:0;
 	padding:0;
 	list-style:none;
   li {
@@ -169,7 +151,6 @@ body {
   }
   .current { color:$silver; border-bottom:1px dotted $silver; }
   @include min-screen(nth($res-collection, 3)*1px) {
-    float:left;
     li {
       float:left;
       margin-bottom:0px;

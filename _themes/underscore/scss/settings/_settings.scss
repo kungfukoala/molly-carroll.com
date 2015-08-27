@@ -19,15 +19,12 @@
 //  Z Index - May not need...
 //
 //////////////////
+$right-column-width:    368px;
 ////////////////////
 // Asset Paths
 ////////////////////
 $img-assetpath: 	"/_themes/underscore/img/";
 $font-assetpath:	"/_themes/underscore/fonts/";
-////////////////////
-// Default Width
-////////////////////
-$default-width:		1024px;
 ////////////////////
 // Grid
 ////////////////////
@@ -49,9 +46,9 @@ $visual-grid-breakpoints: () !default;
 // Colors
 //
 ////////////////////
-$primary:			rgb(0,0,0); 		// Black
+$primary:			rgb(0,0,0); 		    // Black
 $secondary:		rgb(208,208,203);  	// Silver
-$tertiary:		rgb(245,245,230); 	// Cream
+$tertiary:		whitesmoke; 	      // Background
 
 $green:				rgb(94,224,170);
 $darkgreen:		rgb(20,140,105);
