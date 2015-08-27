@@ -35,10 +35,13 @@ body {
 }
 .body {
   margin-top:45px;
-  padding:$padding-large $padding-large $padding-large $padding-large;
-  &-home {
-    margin-top:30px;
-  }
+  padding:$padding-small $padding-small $padding-small $padding-small;
+  @include min-screen(nth($res-collection, 3)*1px) {
+    padding:$padding-large $padding-large $padding-large $padding-large;
+    &-home {
+      margin-top:30px;
+    }
+  } 
 }
 .artwork-column { 
   display:none;
