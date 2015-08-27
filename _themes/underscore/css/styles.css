@@ -409,7 +409,8 @@ html {
   box-sizing: inherit; }
 
 .content-column, .content-column-home {
-  background: url(/_themes/underscore/img/mc_contentbackground_1.1.png) 50% 50% right top no-repeat; }
+  background: url(/_themes/underscore/img/mc_contentbackground_1.1.png) right top no-repeat;
+  background-size: 250px; }
   @media screen and (min-width: 770px) {
     .content-column, .content-column-home {
       background: url(/_themes/underscore/img/mc_contentbackground_1.1.png) right top no-repeat, url(/_themes/underscore/img/mc_contentbackground_1.1.png) -170px -280px no-repeat; } }

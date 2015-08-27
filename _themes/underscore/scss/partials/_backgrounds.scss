@@ -6,7 +6,8 @@
 $nav-background: "mc_nav_background_1.0.png";
 $content-background: "mc_contentbackground_1.1.png";
 %content-background { 
-  background:url(#{$img-assetpath}#{$content-background}) 50% 50% right top no-repeat;
+  background:url(#{$img-assetpath}#{$content-background}) right top no-repeat;
+  background-size:250px;
   @include min-screen(nth($res-collection, 3)*1px) {
     background:url(#{$img-assetpath}#{$content-background}) right top no-repeat, url(#{$img-assetpath}#{$content-background}) -170px -280px no-repeat;
   }
