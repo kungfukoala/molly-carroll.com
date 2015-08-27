@@ -32,10 +32,10 @@
 @import 'helpers/helpers';
 // Bourbon Neat
 @import 'neat';
-// Media Query Settings
-// @import 'settings/querysettings';
 // Base Styles
 @import 'partials/backgrounds';
 @import 'partials/base';
+@import 'partials/navigation';
 @import 'partials/typography';
+@import 'partials/artwork';
 @import 'pages/home';

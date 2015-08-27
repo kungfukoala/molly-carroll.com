@@ -1,0 +1,55 @@
+.embellishment { position:relative; width:$right-column-width; }
+.face {
+	position:absolute;
+	z-index:$z-face;
+	top:0px;
+	right:0px;
+	width:$right-column-width;
+	height:607px;
+	@extend %face-artwork;
+}
+.color-band {
+	width:$right-column-width;
+	height:430px;
+	@extend %color-band;
+}
+.salmon {
+	background-position:0px -2162px;
+}
+.green {
+	background-position:0px -1730px;
+}
+.yellow {
+	background-position:0px -1298px;
+}
+.teal {
+	background-position:0px -862px;
+}
+.purple {
+	background-position:0px -431px;
+}
+.artwork-band {
+  position:absolute;
+  right:0px;
+	width:$right-column-width;
+	height:100%;
+	@extend %artwork-band;
+}
+.one {
+	background-position:0px 0px;
+}
+.two {
+	background-position:-385px 0px;
+}
+.three {
+	background-position:-770px 0px;
+}
+.four {
+	background-position:-1150px 0px;
+}
+.five {
+	background-position:-1540px 0px;
+}
+.six {
+	background-position:-1925px 0px;
+}

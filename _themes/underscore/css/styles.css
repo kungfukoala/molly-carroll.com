@@ -408,10 +408,10 @@ html {
 *, *::after, *::before {
   box-sizing: inherit; }
 
-.content, .content-home {
+.content-column, .content-column-home {
   background: url(/_themes/underscore/img/mc_contentbackground_1.1.png) right top no-repeat, url(/_themes/underscore/img/mc_contentbackground_1.1.png) -170px -280px no-repeat; }
 
-.content-home {
+.content-column-home {
   background: url(/_themes/underscore/img/mc_homebackground_1.0.png) right top no-repeat, url(/_themes/underscore/img/mc_contentbackground_1.1.png) -170px -280px no-repeat; }
 
 .color-band {
@@ -430,7 +430,7 @@ body {
   font-size: 1em;
   font-family: "ff-meta-web-pro", helvetica, san-serif;
   color: black;
-  background-color: #fce2c6; }
+  background-color: whitesmoke; }
   @media screen and (min-width: 770px) {
     body {
       font-size: 0.9em; } }
@@ -446,44 +446,31 @@ body {
     content: "";
     display: table; }
 
-.content, .content-home {
-  width: auto;
-  background-color: whitesmoke; }
-  .content .page-header, .content-home .page-header {
+.content-column, .content-column-home {
+  width: auto; }
+  .content-column .page-header, .content-column-home .page-header {
     padding-bottom: 45px; }
   @media screen and (min-width: 770px) {
-    .content, .content-home {
-      margin-right: 368px; }
-      .content .page-header, .content-home .page-header {
-        float: left;
-        display: block;
-        margin-right: 0%;
-        width: 40%;
-        padding-left: 45px; }
-        .content .page-header:last-child, .content-home .page-header:last-child {
-          margin-right: 0; }
-      .content .body, .content-home .body {
-        padding: 45px 45px 45px 45px;
-        float: left;
-        display: block;
-        margin-right: 0%;
-        width: 100%; }
-        .content .body:last-child, .content-home .body:last-child {
-          margin-right: 0; } }
+    .content-column, .content-column-home {
+      margin-right: 368px; } }
 
-.artwork {
+.body {
+  margin-top: 45px;
+  padding: 75px 75px 75px 75px; }
+  .body-home {
+    margin-top: 30px; }
+
+.artwork-column {
   display: none; }
   @media screen and (min-width: 770px) {
-    .artwork {
+    .artwork-column {
       display: block;
-      position: relative;
       float: right;
       height: 100%;
       width: 368px; } }
 
 .entry {
   margin-bottom: 45px;
-  padding: 0 45px 45px 45px;
   border-bottom: 1px dotted #d45a8a; }
 
 .body-container {
@@ -499,65 +486,25 @@ body {
   margin-right: 0%;
   width: 100%;
   font-size: 0.9em;
-  padding: 100px 45px 45px 45px; }
+  padding: 75px 45px 45px 45px; }
   .footer-container:last-child {
     margin-right: 0; }
 
-.embellishment {
-  position: relative;
-  width: 368px; }
-
-.face {
+.monogram {
   position: absolute;
-  z-index: 900;
-  top: 0px;
-  right: 0px;
-  width: 368px;
-  height: 607px; }
+  z-index: 1000;
+  top: 165px;
+  right: 300px;
+  width: 141px;
+  height: 186px; }
 
-.color-band {
-  width: 368px;
-  height: 433px; }
-
-.salmon {
-  background-position: 0px -2162px; }
-
-.green {
-  background-position: 0px -1730px; }
-
-.yellow {
-  background-position: 0px -1298px; }
-
-.teal {
-  background-position: 0px -862px; }
-
-.purple {
-  background-position: 0px -431px; }
-
-.artwork-band {
-  width: 368px;
-  height: 100%; }
-
-.one {
-  background-position: 0px 0px; }
-
-.two {
-  background-position: -385px 0px; }
-
-.three {
-  background-position: -770px 0px; }
-
-.four {
-  background-position: -1150px 0px; }
-
-.five {
-  background-position: -1540px 0px; }
-
-.six {
-  background-position: -1925px 0px; }
+.logo {
+  margin-top: 45px;
+  margin-left: 15px; }
 
 .nav-container {
-  padding-left: 1.2em; }
+  padding-left: 1.2em;
+  padding-top: 35px; }
   @media screen and (min-width: 770px) {
     .nav-container {
       padding-left: 25px; } }
@@ -586,8 +533,7 @@ body {
     border-bottom: 1px dotted #d0d0cb; }
   @media screen and (min-width: 770px) {
     .nav li {
-      float: left;
-      margin-bottom: 0px; }
+      float: left; }
     .nav .social-icon {
       float: none; } }
 
@@ -619,23 +565,6 @@ body {
   border-top-left-radius: 25px;
   padding: 6px 12px;
   background-color: transparent; }
-
-.monogram {
-  position: absolute;
-  z-index: 1000;
-  top: 185px;
-  right: 300px;
-  width: 141px;
-  height: 186px; }
-
-@media screen and (min-width: 770px) {
-  .logo {
-    position: absolute;
-    z-index: 1000;
-    top: 120px;
-    left: 15px;
-    width: 336px;
-    height: 78px; } }
 
 body {
   -webkit-font-smoothing: antialiased; }
@@ -701,42 +630,86 @@ h6 {
 a {
   color: black; }
 
-.content-home {
+.embellishment {
+  position: relative;
+  width: 368px; }
+
+.face {
+  position: absolute;
+  z-index: 900;
+  top: 0px;
+  right: 0px;
+  width: 368px;
+  height: 607px; }
+
+.color-band {
+  width: 368px;
+  height: 430px; }
+
+.salmon {
+  background-position: 0px -2162px; }
+
+.green {
+  background-position: 0px -1730px; }
+
+.yellow {
+  background-position: 0px -1298px; }
+
+.teal {
+  background-position: 0px -862px; }
+
+.purple {
+  background-position: 0px -431px; }
+
+.artwork-band {
+  position: absolute;
+  right: 0px;
+  width: 368px;
+  height: 100%; }
+
+.one {
+  background-position: 0px 0px; }
+
+.two {
+  background-position: -385px 0px; }
+
+.three {
+  background-position: -770px 0px; }
+
+.four {
+  background-position: -1150px 0px; }
+
+.five {
+  background-position: -1540px 0px; }
+
+.six {
+  background-position: -1925px 0px; }
+
+.content-column-home {
   background-color: whitesmoke; }
-  .content-home .page-header {
+  .content-column-home .page-header {
     float: left;
     display: block;
     margin-right: 0%;
     width: 40%;
     padding-left: 45px; }
-    .content-home .page-header:last-child {
-      margin-right: 0; }
-  .content-home .body {
-    padding: 45px 45px 45px 45px;
-    float: left;
-    display: block;
-    margin-right: 0%;
-    width: 100%; }
-    .content-home .body:last-child {
+    .content-column-home .page-header:last-child {
       margin-right: 0; }
 
 .home-book {
   position: relative;
   text-align: center;
-  margin-bottom: 65px; }
+  margin-bottom: 25px; }
 
 @media screen and (min-width: 770px) {
   .home-introduction {
-    margin-right: 175px; } }
+    margin: 0 45px 0 45px; } }
 
 .home-video, .home-about {
-  float: left;
-  display: block;
-  margin-right: 0%;
   width: 100%;
   margin-bottom: 65px; }
-  .home-video:last-child, .home-about:last-child {
-    margin-right: 0; }
+  .home-video h3, .home-about h3 {
+    padding-top: 25px; }
   @media screen and (min-width: 770px) {
     .home-video, .home-about {
       float: left;
@@ -752,7 +725,7 @@ a {
   @media screen and (min-width: 770px) {
     .home-book-info {
       position: absolute;
-      left: 15px;
+      left: 45px;
       bottom: 45px;
       padding-left: 0; } }
   .home-book-info i {
@@ -765,3 +738,9 @@ a {
     margin-bottom: 15px; }
   .home-book-info h4, .home-book-info .h4, .home-book-info .h5, .home-book-info .h6 {
     margin-bottom: 0.5em; }
+
+.home-spacing-medium {
+  margin: 0; }
+  @media screen and (min-width: 770px) {
+    .home-spacing-medium {
+      margin: 45px 45px 0 45px; } }

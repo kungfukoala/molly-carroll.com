@@ -1,0 +1,68 @@
+////////////////////
+//
+// Navigation
+//
+////////////////////
+.nav-container { 
+  padding-left:1.2em;
+  padding-top:35px;
+  @include min-screen(nth($res-collection, 3)*1px) {
+  	padding-left:$padding-small;
+  }
+}
+.nav {
+	width:100%;
+	margin:0;
+	padding:0;
+	list-style:none;
+  li {
+    margin-bottom:8px;
+  }
+	a {
+		display:block;
+		font-size:$font-large;
+		font-family:$tertiary-font;
+		text-decoration:none;
+		text-transform:lowercase;
+		letter-spacing:em(1);
+		margin-right:em(14);
+		border-bottom:1px dotted black;
+	}
+  .social-icon {
+    border-bottom:none;
+    float:left;
+  }
+  .current { color:$silver; border-bottom:1px dotted $silver; }
+  @include min-screen(nth($res-collection, 3)*1px) {
+    li {
+      float:left;
+    }
+    .social-icon {
+      float:none;
+    }
+  }
+}
+.nav-secondary {
+	padding-left:$padding-medium;
+	a {
+		display:block;
+		font-size:em(19);
+		font-family:$tertiary-font;
+		color:$purple;
+		text-decoration:none;
+		text-transform:lowercase;
+		letter-spacing:em(1);
+		margin-right:em(14);
+		border-bottom:1px dotted $purple;
+	}
+	.current { color:$silver; border-bottom:1px dotted $silver; }
+}
+.button {
+  border:3px solid $peach;
+  @include border-top-radius(25px);
+  @include border-right-radius(25px);
+  @include border-bottom-radius(25px);
+  @include border-left-radius(25px);
+  padding:6px 12px;
+  background-color:transparent;
+}

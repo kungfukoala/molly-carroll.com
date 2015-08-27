@@ -1,23 +1,25 @@
-.content-home {
-	@extend .content;
+.content-column-home {
+	@extend .content-column;
 	@extend %home-background;
 	background-color:whitesmoke;
 	.page-header { @include span-columns(2 of 5); padding-left:$padding-medium; }
-	.body { padding:$padding-medium $padding-medium $padding-medium $padding-medium; @include span-columns(5 of 5); }
 }
 .home-book {
   position:relative;
   text-align:center;
-  margin-bottom:65px;
+  margin-bottom:25px;
 }
 .home-introduction {
   @include min-screen(nth($res-collection, 3)*1px) {
-    margin-right:175px;
+    margin:0 $padding-medium 0 $padding-medium;
   }
 }
 .home-video, .home-about {
-  @include span-columns(6 of 6);
+  width:100%;
   margin-bottom:65px;
+  h3 {
+    padding-top:$padding-small;
+  }
   @include min-screen(nth($res-collection, 3)*1px) {
     @include span-columns(3 of 6);
   }
@@ -25,7 +27,7 @@
 .home-book-info {
   @include min-screen(nth($res-collection, 3)*1px) {
     position:absolute;
-    left:15px;
+    left:$padding-medium;
     bottom:45px;
     padding-left:0;
   }
@@ -44,5 +46,11 @@
   }
   h4 {
     margin-bottom:0.5em;
+  }
+}
+.home-spacing-medium {
+  margin:0;
+  @include min-screen(nth($res-collection, 3)*1px) {
+    margin:$padding-medium $padding-medium 0 $padding-medium;
   }
 }
