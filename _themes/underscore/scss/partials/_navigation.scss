@@ -57,12 +57,3 @@
 	}
 	.current { color:$silver; border-bottom:1px dotted $silver; }
 }
-.button {
-  border:3px solid $peach;
-  @include border-top-radius(25px);
-  @include border-right-radius(25px);
-  @include border-bottom-radius(25px);
-  @include border-left-radius(25px);
-  padding:6px 12px;
-  background-color:transparent;
-}

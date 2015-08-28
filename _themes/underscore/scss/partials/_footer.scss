@@ -1,0 +1,19 @@
+.newsletter {
+  h5 { color:$silver; }
+  @include span-columns(8 of 8);
+  margin-bottom:$padding-small;
+  @include min-screen(nth($res-collection, 3)*1px) {
+    @include span-columns(4 of 8);
+    border-right:1px solid $silver;
+    margin-bottom:0;
+  }
+}
+.legal {
+  @extend .newsletter;
+  color:$silver;
+  @include min-screen(nth($res-collection, 3)*1px) {
+    padding-left:$padding-medium;
+  }
+}
+
+

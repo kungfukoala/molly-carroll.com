@@ -10,6 +10,8 @@
   margin-bottom:25px;
 }
 .home-introduction {
+  padding-left:$padding-small;
+  padding-right:$padding-small;
   @include min-screen(nth($res-collection, 3)*1px) {
     margin:0 $padding-medium 0 $padding-medium;
   }

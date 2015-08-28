@@ -46,18 +46,20 @@ $visual-grid-breakpoints: () !default;
 // Colors
 //
 ////////////////////
-$primary:			rgb(0,0,0); 		    // Black
-$secondary:		rgb(208,208,203);  	// Silver
-$tertiary:		whitesmoke; 	      // Background
+$primary:			            rgb(0,0,0); 		    // Black
+$secondary:		            rgb(208,208,203);  	// Silver
+$tertiary:		            whitesmoke; 	      // Background
 
-$green:				rgb(94,224,170);
-$darkgreen:		rgb(20,140,105);
-$yellow:			rgb(232,189,104);
-$purple:			rgb(134,106,149);
-$magenta:			rgb(212,90,138);
-$silver:			rgb(208,208,203);  	// Silver
-$cream:				rgb(245,245,230); 	// Cream
-$peach:				rgb(252,226,198);
+$green:				            rgb(94,224,170);
+$darkgreen:		            rgb(20,140,105);
+$yellow:			            rgb(232,189,104);
+$purple:			            rgb(134,106,149);
+$magenta:			            rgb(212,90,138);
+$silver:			            rgb(208,208,203);  	// Silver
+$cream:				            rgb(245,245,230); 	// Cream
+$peach:				            rgb(252,226,198);
+
+$placeholder-color:       $silver;
 ////////////////////
 //
 // Typography

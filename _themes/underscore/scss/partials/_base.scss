@@ -65,8 +65,10 @@ body {
 }
 .footer-container {
   @include span-columns(8);
-	font-size:$font-small;
-	padding:$padding-large $padding-medium $padding-medium $padding-medium;
+	padding:$padding-large $padding-small $padding-small $padding-small;
+  @include min-screen(nth($res-collection, 3)*1px) {
+    padding-left:$padding-small;
+  }
 }
 ////////////////////
 //
