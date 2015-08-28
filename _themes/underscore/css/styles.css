@@ -790,7 +790,8 @@ input[type="email"].focus {
   padding-right: 25px; }
   @media screen and (min-width: 770px) {
     .home-introduction {
-      margin: 0 45px 0 45px; } }
+      margin: 0 45px 0 45px;
+      padding: 0; } }
 
 .home-video, .home-about {
   width: 100%;
