@@ -10,9 +10,11 @@
 }
 .legal {
   @extend .newsletter;
+  font-size:$font-small;
   color:$silver;
   @include min-screen(nth($res-collection, 3)*1px) {
     padding-left:$padding-medium;
+    border:none;
   }
 }
 

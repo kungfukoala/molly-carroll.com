@@ -458,7 +458,7 @@ body {
   width: auto; }
   .content-column .page-header, .content-column-home .page-header {
     padding-bottom: 45px; }
-  @media screen and (min-width: 770px) {
+  @media screen and (min-width: 1100px) {
     .content-column, .content-column-home {
       margin-right: 368px; } }
 
@@ -473,7 +473,7 @@ body {
 
 .artwork-column {
   display: none; }
-  @media screen and (min-width: 770px) {
+  @media screen and (min-width: 1100px) {
     .artwork-column {
       display: block;
       float: right;
@@ -764,10 +764,12 @@ input[type="email"].focus {
         margin-right: 0; } }
 
 .legal {
+  font-size: 0.9em;
   color: #d0d0cb; }
   @media screen and (min-width: 770px) {
     .legal {
-      padding-left: 45px; } }
+      padding-left: 45px;
+      border: none; } }
 
 .content-column-home {
   background-color: whitesmoke; }
