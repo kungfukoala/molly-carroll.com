@@ -11,33 +11,28 @@ autoresize: true
 
 # Order and choose your buttons. Use '|' for a vertical seperator
 buttons:
- - formatting
- - '|'
- - bold
- - italic
- - deleted
- - '|'
- - unorderedlist
- - orderedlist
- - outdent
- - indent
- - '|'
- - image
- - video
- - table
- - link
- - horizontalrule
- - '|'
- - fontcolor
- - backcolor
- - '|'
- - alignleft
- - aligncenter
- - alignright
- - justify
- - '|'
- - html
-
+  - formatting
+  - bold
+  - italic
+  - deleted
+  - unorderedlist
+  - orderedlist
+  - outdent
+  - indent
+  - image
+  - file
+  - video
+  - table
+  - link
+  - horizontalrule
+  - fontcolor
+  - backcolor
+  - alignleft
+  - aligncenter
+  - alignright
+  - justify
+  - html
+  
 # Turn on/off cleanup on paste
 cleanup: true
 
@@ -56,13 +51,6 @@ convertVideoLinks: false
 # Turn on email tab in link modal window
 linkEmail: true
 
-# Set a custom stylesheet for the editor
-# Use in conjunction with iframe: true
-#
-# css: /_themes/denali/css/denali.css
-
-iframe: false
-
 # Set a default margin around images
 imageFloatMargin: 10px
 
@@ -76,9 +64,6 @@ formattingTags:
   - h3
   - h4
 
-plugins:
-  - fullscreen
-
 # Set a minimum height (in pixels)
 minHeight: 150
 
@@ -89,10 +74,4 @@ paragraphy: true
 shortcuts: true
 
 # Turn on/off the HTML source button on the toolbar
-source: true
-
-# turn on/off nice code formatting
-tidyHtml: true
-
-# Visual structure mode
-wym: false
+buttonSource: true

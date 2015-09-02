@@ -13,6 +13,19 @@ translations:
   none: None
   view: View
   in: in
+  remove: Remove
+  move: Move
+  toggle: Toggle
+  options: Options
+  cancel: Cancel
+  by: by
+  
+  # Timing
+  today: today
+  tomorrow: tomorrow
+  yesterday: yesterday
+  at: at
+  published: Published
 
   # Nav
   home: Home
@@ -40,6 +53,7 @@ translations:
   take_action: Take Action
   delete_entries: Delete Entries
   confirm_delete: Yes I'm Sure
+  confirm_action: Yes I'm Sure
 
   # Pages
   page: Page
@@ -53,6 +67,7 @@ translations:
   select_new_page_type: Select New Page Type
   parent: Parent
   or: or
+  and: and
   pagedelete_confirm: "Are you sure you wish to delete this page?"
 
   update_available: update available
@@ -70,7 +85,8 @@ translations:
   publish_date: Publish Date
   publish_time: Publish Time
   save: Save
-  save_publish: "Save & Publish"
+  save_publish: "Publish"
+  save_publish_continue: "Publish & Continue"
   content: Content
   new: New
 
@@ -87,6 +103,7 @@ translations:
   username: Username
   password: Password
   password_confirmation: Password Confirmation
+  change_password: Change Password
   type_again: "Type it again, please"
   encrypt_password: Encrypt Password?
   first_name: First Name
@@ -97,6 +114,9 @@ translations:
   new_member: New Member
   creating_member: Creating new member
   editing_member: "Editing member: "
+  reset_password_url_invalid: This URL is invalid
+  reset_password_url_expired: This link has expired
+  member_doesnt_exist: Member doesn't exist
 
   # Logs
   site_logs: Site Logs
@@ -160,6 +180,16 @@ translations:
   access_denied: Access Denied
   enable_curl: cURL must be enabled to perform a security test.
 
+  # File-upload errors
+  upload_error_ini_size: File upload failed. The file’s size is more than PHP’s configuration allows.
+  upload_error_form_size: File upload failed. The file’s size is more than the `MAX_FILE_SIZE` on the form allows.
+  upload_error_err_partial: File upload failed. The file was only partially uploaded.
+  upload_error_no_file: File upload failed. No file was chosen for upload.
+  upload_error_no_temp_dir: File upload failed. No temporary directory has been specified.
+  upload_error_cant_write: File upload failed. The temporary upload directory may not be writable.
+  upload_error_extension: File upload failed. A PHP extension has stopped the file upload from working.
+  upload_error_unknown: File upload failed for unknown reasons.
+
   # Security
   security_status: Security Status
   security_files_security_check: Site Files Security Check
@@ -188,3 +218,38 @@ translations:
   latitude: Latitude
   longitude: Longitude
 
+  # Raven
+  export_csv: Export to CSV
+  raven: Raven
+  raven_forms: Raven Forms
+  form: Form
+  submissions: Submissions
+
+  # Revisions
+  view_page_history: View Revisions
+  choose_revision_to_view: Choose a revision to view
+  view_this_revision: View this revision
+  first_save: First saved revision
+  published_on: Published on
+  you_are_here: You Are Here
+  viewing_revision: You are viewing a revision of this page from %s. You can re-publish it as-is, make changes then publish, or
+  viewing_revision_link: go back to the live version
+  what_changed: Describe What Changed
+  file_deleted: File deleted
+
+  
+  # File
+  upload_file: Upload a file
+  drop_your_file: Drop your file
+  max_files_reached: Max files reached
+  choose_existing_file: Choose an existing file
+  choose_file_from: Choose a file from
+  file_deleted: File deleted
+  file_doesnt_exist: File does not exist
+  file_no_config: No config provided
+  file_no_path: No path provided
+  file_deleting_not_permitted: Deleting files is not permitted
+
+  # Replicator
+  hide_all: Hide all
+  show_all: Show all

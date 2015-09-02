@@ -1,0 +1,57 @@
+.validate {}
+.button {
+  border:3px solid $coral;
+  color:$coral;
+  @include border-top-radius(25px);
+  @include border-right-radius(25px);
+  @include border-bottom-radius(25px);
+  @include border-left-radius(25px);
+  padding:6px 12px;
+  background-color:transparent;
+  text-decoration:none;
+}
+input[type="text"] {
+  width:100%;
+  padding:10px;
+  margin-bottom:$padding-small;
+  border:none;
+  border-bottom:solid 2px #c9c9c9;
+  transition:border 0.3s;
+  @include min-screen(nth($res-collection, 3)*1px) {
+    width:65%;
+  }
+}
+input[type="text"]:focus,
+input[type="text"].focus {
+  border-bottom:solid 2px #969696;
+}
+input[type="email"] {
+  width:100%;
+  padding:10px;
+  margin-bottom:$padding-small;
+  border:none;
+  border-bottom:solid 2px #c9c9c9;
+  transition:border 0.3s;
+  @include min-screen(nth($res-collection, 3)*1px) {
+    width:65%;
+  }
+}
+input[type="email"]:focus,
+input[type="email"].focus {
+  border-bottom:solid 2px #969696;
+}
+// http://stackoverflow.com/questions/2610497/change-an-inputs-html5-placeholder-color-with-css
+::-webkit-input-placeholder {
+    color:$placeholder-color;
+}
+:-moz-placeholder {
+   color:$placeholder-color;
+   opacity:1;
+}
+::-moz-placeholder {
+   color:$placeholder-color;
+   opacity:1;
+}
+:-ms-input-placeholder {
+   color:$placeholder-color;
+}

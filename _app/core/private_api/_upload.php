@@ -5,18 +5,19 @@ class _Upload
     private static $files = array();
     
     /**
-     * Grabs the contents of $_FILES and inserts a standardized array of them into $_POST
+     * Takes a $_FILES array and standardizes it to be the same regardless of number of uploads
      * 
+     * @param array  $files  Files array to standardize
      * @return void
      */
-    public static function standardizeFileUploads()
+    public static function standardizeFileUploads($files=array())
     {
-        if (!count($_FILES)) {
-            return;
+        if (!count($files)) {
+            return $files;
         }
         
         // loop through files to standardize
-        foreach ($_FILES as $field => $data) {
+        foreach ($files as $field => $data) {
             if (!isset(self::$files[$field]) || !is_array(self::$files[$field])) {
                 self::$files[$field] = array();
             }
@@ -35,8 +36,8 @@ class _Upload
             }
         }
         
-        // overwrite $_FILES with our cleaner version
-        $_FILES = self::$files;
+        // return our cleaner version
+        return self::$files;
     }
 
 
@@ -106,5 +107,73 @@ class _Upload
             // we should never, ever see this
             return Localization::fetch('upload_error_unknown');
         }
+    }
+
+
+    /**
+     * Upload file(s)
+     * 
+     * @param  string $destination  Where the file is going
+     * @param  string $id           The field took look at in the files array
+     * @return array
+     */
+    public static function uploadBatch($destination = null, $id = null)
+    {
+        $destination = $destination ?: Request::get('destination');
+        $id          = $id ?: Request::get('id');
+        $files       = self::standardizeFileUploads($_FILES);
+        $results     = array();
+  
+        // Resizing configuration
+        if ($resize = Request::get('resize')) {
+            $width         = Request::get('width', null);
+            $height        = Request::get('height', null);
+            $ratio         = Request::get('ratio', true);
+            $upsize        = Request::get('upsize', false);
+            $keep_original = Request::get('keep_original', true);
+            $quality       = Request::get('quality', Config::get('transform_quality'));
+        }
+  
+        // If $files[$id][0] exists, it means there's an array of images.
+        // If there's not, there's just one. We want to change this to an array.
+        if ( ! isset($files[$id][0])) {
+            $tmp = $files[$id];
+            unset($files[$id]);
+            $files[$id][] = $tmp;
+        }
+  
+        // Process each image
+        foreach ($files[$id] as $file) {
+  
+            // Image data
+            $path = File::upload($file, $destination);
+            $name = basename($path);
+    
+            // Resize
+            if ($resize) {
+                $original_image_path = Path::assemble(BASE_PATH, $path);
+                $image = \Intervention\Image\Image::make($original_image_path);
+
+                if ($keep_original) {
+                    $resize_folder = Path::assemble($image->dirname, 'resized');
+                    
+                    if ( ! Folder::exists($resize_folder)) {
+                        Folder::make($resize_folder);
+                    }
+
+                    $resize_path = Path::assemble($resize_folder, $image->basename);
+                    $path = Path::toAsset($resize_path);
+                    $name = basename($path);
+                    $image->resize($width, $height, $ratio, $upsize)->save($resize_path, $quality);
+                } else {
+                    $image->resize($width, $height, $ratio, $upsize)->save($original_image_path, $quality);
+                }
+
+            }
+  
+            $results[] = compact('path', 'name');
+        }
+
+        return $results;
     }
 }

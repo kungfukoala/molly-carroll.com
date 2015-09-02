@@ -33,12 +33,11 @@ class Cache
             'content'   => BASE_PATH . '/_cache/_app/content/content.php',
             'settings'  => BASE_PATH . '/_cache/_app/content/settings.php',
             'structure' => BASE_PATH . '/_cache/_app/content/structure.php',
-            'time'      => BASE_PATH . '/_cache/_app/content/last.php',
-            'members'   => BASE_PATH . '/_cache/_app/members/members.php'
+            'time'      => BASE_PATH . '/_cache/_app/content/last.php'
         );
         
-        foreach ($caches as $cache) {
-            if (!File::exists($cache) || !strlen(File::get($cache))) {
+        foreach ($caches as $key => $cache) {
+            if (!File::exists($cache) || filesize($cache) == 0) {
                 return false;
             }
         }

@@ -19,15 +19,12 @@
 //  Z Index - May not need...
 //
 //////////////////
+$right-column-width:    368px;
 ////////////////////
 // Asset Paths
 ////////////////////
 $img-assetpath: 	"/_themes/underscore/img/";
 $font-assetpath:	"/_themes/underscore/fonts/";
-////////////////////
-// Default Width
-////////////////////
-$default-width:		1024px;
 ////////////////////
 // Grid
 ////////////////////
@@ -49,49 +46,35 @@ $visual-grid-breakpoints: () !default;
 // Colors
 //
 ////////////////////
-$primary:			rgb(0,0,0); 		// Black
-$secondary:			rgb(208,208,203);  	// Silver
-$tertiary:			rgb(245,245,230); 	// Cream
+$primary:			            rgb(0,0,0); 		    // Black
+$secondary:		            rgb(208,208,203);  	// Silver
+$tertiary:		            whitesmoke; 	      // Background
 
-$green:				rgb(94,224,170);
-$darkgreen:			rgb(20,140,105);
-$yellow:			rgb(232,189,104);
-$purple:			rgb(134,106,149);
-$magenta:			rgb(212,90,138);
-$silver:			rgb(208,208,203);  	// Silver
-$cream:				rgb(245,245,230); 	// Cream
+$green:				            rgb(94,224,170);
+$darkgreen:		            rgb(20,140,105);
+$yellow:			            rgb(232,189,104);
+$purple:			            rgb(134,106,149);
+$coral:			              rgb(230,102,92);
+$silver:			            rgb(200,201,198);  	// Silver
+$cream:				            rgb(245,245,230); 	// Cream
+$peach:				            rgb(252,226,198);
+$teal:				            rgb(98,185,181);
+
+$placeholder-color:       $silver;
 ////////////////////
 //
 // Typography
 //
 ////////////////////
-$base-font-size:	em(14);
-$font-small:		em(12);
-$font-medium:		em(18);
-$font-large:		em(22);
+$base-font-size:	1em;
+$font-small:		  0.9em;
+$font-medium:		  1.2em;
+$font-large:		  1.4em;
 
 
 $primary-font: 		"ff-meta-web-pro", helvetica, san-serif;
 $secondary-font: 	"lust", georgia, serif;
-$tertiary-font: 	"ff-meta-serif-sc-web-pro", georgia, serif;
-////////////////////
-//
-// Images
-//
-////////////////////
-$nav-background: "mc_nav_background_1.0.png";
-$content-background: "mc_contentbackground_1.1.png";
-%content-background { background:url(#{$img-assetpath}#{$nav-background}) center top no-repeat, url(#{$img-assetpath}#{$content-background}) right top no-repeat; }
-$home-background: "mc_homebackground_1.0.png";
-%home-background { background:url(#{$img-assetpath}#{$nav-background}) center top no-repeat, url(#{$img-assetpath}#{$home-background}) right top no-repeat; }
-$color-band: "mc_colorband.jpg";
-%color-band { background:url(#{$img-assetpath}#{$color-band}); }
-$artwork-band: "mc_artwork_1.1.jpg";
-%artwork-band { background:url(#{$img-assetpath}#{$artwork-band}); }
-$face-artwork: "mc_face_1.0.png";
-%face-artwork { background:url(#{$img-assetpath}#{$face-artwork}); }
-$background: "mc_background.jpg";
-%background { background:url(#{$img-assetpath}#{$background}); }
+$tertiary-font: 	"lust", georgia, serif;
 ////////////////////
 //
 // Z-Index
@@ -106,5 +89,5 @@ $z-face:			900;
 ////////////////////
 $padding-small:		25px;
 $padding-medium:	45px;
-$padding-large:		100px;
+$padding-large:		75px;
 

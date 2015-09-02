@@ -20,16 +20,24 @@
 // Resets
 @import 'helpers/normalize';
 @import 'helpers/reset';
+@import 'helpers/video-responsive';
 // Bourbon
 @import 'bourbon';
 // Settings
 @import 'settings/settings';
+@import 'settings/querysettings';
+// Media Queries
+@import 'partials/mediaqueries';
 // Helpers
 @import 'helpers/helpers';
 // Bourbon Neat
 @import 'neat';
-// Media Query Settings
-// @import 'settings/querysettings';
 // Base Styles
+@import 'partials/backgrounds';
 @import 'partials/base';
+@import 'partials/navigation';
 @import 'partials/typography';
+@import 'partials/artwork';
+@import 'partials/forms';
+@import 'partials/footer';
+@import 'pages/home';

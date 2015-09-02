@@ -27,7 +27,7 @@ _site_name: Molly Carroll
 _content_root: _content
 
 # Used for permalinks
-_site_url: http://mollycarroll.com
+_site_url: http://molly-carroll.com
 
 # Folder name of your desired theme
 _theme: underscore
@@ -103,6 +103,8 @@ _enable_static_pipeline: false
 #  DEBUGGING & DEVELOPMENT
 #
 ###########################################################################################
+
+_display_debug_panel: false
 
 # Specify which URLs belong to a given environment, and when you access Statamic from
 # a matching URL, we'll merge the environment-specific config from _config/environments

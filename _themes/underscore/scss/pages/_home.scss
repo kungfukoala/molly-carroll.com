@@ -1,0 +1,68 @@
+.content-column-home {
+	@extend .content-column;
+	@extend %home-background;
+	background-color:whitesmoke;
+	.page-header { @include span-columns(2 of 5); padding-left:$padding-medium; }
+}
+.home-book {
+  position:relative;
+  text-align:center;
+}
+.home-introduction {
+  padding-left:$padding-small;
+  padding-right:$padding-small;
+  @include min-screen(nth($res-collection, 3)*1px) {
+    margin:0 $padding-medium 0 $padding-medium;
+    padding:0;
+  }
+}
+.home-quote {
+  margin-left:20px;
+  margin-right:20px;
+  margin-bottom:45px;
+  @include min-screen(nth($res-collection, 3)*1px) {
+    margin-left:150px;
+    margin-right:150px;
+  }
+}
+.home-video, .home-about {
+  width:100%;
+  margin-bottom:65px;
+  h3 {
+    padding-top:$padding-small;
+  }
+  @include min-screen(nth($res-collection, 2)*1px) {
+    @include span-columns(3 of 6);
+  }
+}
+.home-book-info {
+  @include min-screen(nth($res-collection, 3)*1px) {
+    width:300px;
+    position:absolute;
+    left:$padding-medium;
+    bottom:45px;
+    padding-left:0;
+  }
+  padding-left:1em;
+  text-align:left;
+  i {
+    margin-bottom:10px;
+  }
+  ul {
+  	margin:20px 0 2em 0;
+  	padding:0;
+  	list-style:none;
+  }
+  li {
+    margin-bottom:15px;
+  }
+  h4 {
+    margin-bottom:0.5em;
+  }
+}
+.home-spacing-medium {
+  margin:0;
+  @include min-screen(nth($res-collection, 3)*1px) {
+    margin:$padding-medium $padding-medium 0 $padding-medium;
+  }
+}

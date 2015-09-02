@@ -7,6 +7,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
   <title>Statamic Control Panel</title>
+  <?php if ( ! Config::get('disable_google_fonts', false)) { ?>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway:400,700|Open+Sans:400italic,400,600" />
+  <?php } ?>  
   <link rel="stylesheet" href="<?php echo Path::tidy(Config::getSiteRoot().'/'.$app->config['theme_path']) ?>css/ascent.min.css">
   <link rel="shortcut icon" href="<?php print Path::tidy(Config::getSiteRoot().'/'.$app->config['theme_path'])?>img/favicon.ico" />
   <script>
@@ -15,7 +18,10 @@
   <script>
       var content_type = "<?php echo Config::getContentType(); ?>";
   </script>
-  <script type="text/javascript" src="<?php echo Path::tidy(Config::getSiteRoot().'/'.$app->config['theme_path'])?>js/ascent.min.js"></script>
+  <script type="text/javascript" src="<?php echo Path::tidy(Config::getSiteRoot().'/'.$app->config['theme_path'])?>js/ascent.min.js?v=1.8.2"></script>
+  <script type="text/javascript">
+	  Statamic.triggerUrl = "<?php echo URL::prependSiteRoot('TRIGGER'); ?>";
+  </script>
   <?php echo Hook::run('control_panel', 'add_to_head', 'cumulative') ?>
 </head>
 <body id="<?php echo $route; ?>">
@@ -86,7 +92,7 @@
           <?php if (CP_Helper::show_page('account', true)): ?>
           <li>
             <a href="<?php echo $app->urlFor("member")."?name={$name}"; ?>">
-              <img src="<?php echo $current_user->getGravatar(26) ?>" height="26" width="26" class="avatar" />
+              <img src="<?php echo $current_user->getGravatar(52) ?>" height="26" width="26" class="avatar" />
               <span class="name"><?php echo Localization::fetch('account') ?></span>
             </a>
           </li>

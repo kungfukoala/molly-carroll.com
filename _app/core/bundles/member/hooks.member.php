@@ -13,7 +13,7 @@ class Hooks_member extends Hooks
         $remember  = (bool) filter_input(INPUT_POST, 'remember', FILTER_SANITIZE_NUMBER_INT);
         $token     = filter_input(INPUT_POST, 'token', FILTER_SANITIZE_STRING);
         $return    = filter_input(INPUT_POST, 'return', FILTER_SANITIZE_STRING);
-        $referrer  = Request::getReferrer();
+        $referrer  = $_SERVER['HTTP_REFERER'];
         
         // validate form token
         if (!$this->tokens->validate($token)) {
@@ -54,11 +54,9 @@ class Hooks_member extends Hooks
      */
     public function member__register()
     {
-        $site_root   = Config::getSiteRoot();
-        $referrer    = Request::getReferrer();
+        $referrer    = $_SERVER['HTTP_REFERER'];
         $token       = filter_input(INPUT_POST, 'token', FILTER_SANITIZE_STRING);
         $return      = filter_input(INPUT_POST, 'return', FILTER_SANITIZE_STRING);
-        $return        = ($return) ? $return : $this->fetchConfig('member_home', $site_root, null, false, false);
         $auto_login  = (bool) filter_input(INPUT_POST, 'auto_login', FILTER_SANITIZE_NUMBER_INT);
 
         // validate form token
@@ -136,6 +134,10 @@ class Hooks_member extends Hooks
         // password
         $password          = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
         $password_confirm  = filter_input(INPUT_POST, 'password_confirmation', FILTER_SANITIZE_STRING);
+
+        if (empty($password)) {
+            $errors['password'] = 'Password is required';
+        }
         
         if (
             !isset($errors['password']) &&   // make sure password isn't already an error
@@ -169,6 +171,9 @@ class Hooks_member extends Hooks
             
             // save member
             $member->save();
+            
+            // trigger a hook
+            $this->runHook('register', 'call', null, $member);
 
             // user saved
             $this->flash->set('register_success', 'Member created.');
@@ -194,7 +199,7 @@ class Hooks_member extends Hooks
     public function member__update_profile()
     {
         $site_root = Config::getSiteRoot();   
-        $referrer  = Request::getReferrer();
+        $referrer  = $_SERVER['HTTP_REFERER'];
         $return    = filter_input(INPUT_POST, 'return', FILTER_SANITIZE_URL);
         
         // is user logged in?
@@ -273,6 +278,9 @@ class Hooks_member extends Hooks
         } else {
             // save member
             $member->save();
+            
+            // trigger a hook
+            $this->runHook('profile_update', 'call', null, $member);
 
             // user saved
             $this->flash->set('update_profile_success', 'Member profile updated.');
@@ -283,5 +291,122 @@ class Hooks_member extends Hooks
                 URL::redirect($referrer);
             }
         }
+    }
+
+
+    public function member__forgot_password()
+    {
+        $globals      = Statamic::loadAllConfigs();
+        $username     = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+        $token        = filter_input(INPUT_POST, 'token', FILTER_SANITIZE_STRING);
+        $return       = filter_input(INPUT_POST, 'return', FILTER_SANITIZE_STRING);
+        $reset_return = filter_input(INPUT_POST, 'reset_return', FILTER_SANITIZE_STRING);
+        $referrer     = Request::getReferrer();
+
+        // validate form token
+        if ( ! $this->tokens->validate($token)) {
+            $this->flash->set('forgot_password_error', 'Invalid token.');
+            URL::redirect($referrer);
+        }
+
+        // bail if member doesn't exist
+        if ( ! $member = Member::load($username)) {
+            $this->flash->set('forgot_password_error', Localization::fetch('member_doesnt_exist'));
+            URL::redirect($referrer);
+        }
+
+        // cache reset data
+        $token = $this->tokens->create();
+        $reset_data = array('username' => $username);
+        if (isset($reset_return)){
+            $reset_data['return'] = $reset_return;
+        }
+        $this->cache->putYAML($token, $reset_data);
+
+        // generate reset url
+        $reset_url = URL::makeFull($this->fetchConfig('reset_password_url', str_replace(Config::getSiteURL(), '', $referrer)));
+        $reset_url .= '?H=' . $token;
+
+        // send email
+        $attributes = array(
+            'from' => $this->fetchConfig('email_sender', Config::get('email_sender'), null, false, false),
+            'to'   => $member->get('email'),
+            'subject' => $this->fetchConfig('reset_password_subject', 'Password Reset', null, false, false)
+        );
+
+        if ($html_template = $this->fetchConfig('reset_password_html_email', false, null, false, false)) {
+            $attributes['html'] = Theme::getTemplate($html_template);
+        }
+
+        if ($text_template = $this->fetchConfig('reset_password_text_email', false, null, false, false)) {
+            $attributes['text'] = Theme::getTemplate($text_template);
+        }
+
+        foreach ($attributes as $key => $value) {
+            $attributes[$key] = Parse::template($value, array('reset_url' => $reset_url), array('statamic_view', 'callback'), $globals);
+        }
+
+        Email::send($attributes);
+        $this->flash->set('forgot_password_sent', true);
+
+        // redirect
+        URL::redirect($return);
+    }
+
+
+    public function member__reset_password()
+    {
+        $site_root         = Config::getSiteRoot();
+        $password          = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+        $password_confirm  = filter_input(INPUT_POST, 'password_confirmation', FILTER_SANITIZE_STRING);
+        $token             = filter_input(INPUT_POST, 'token', FILTER_SANITIZE_STRING);
+        $hash              = filter_input(INPUT_POST, 'hash', FILTER_SANITIZE_STRING);
+        $referrer          = $_SERVER['HTTP_REFERER'];
+
+        // validate form token
+        if ( ! $this->tokens->validate($token)) {
+            $this->flash->set('reset_password_error', 'Invalid token.');
+            URL::redirect($referrer);
+        }
+        
+        // bail if cache doesnt exist or if its too old.
+        // this should have been caught on the page itself,
+        // but if it got submitted somehow, just redirect and the error logic will be in the plugin.
+        if (
+            ! $this->cache->exists($hash) 
+            || $this->cache->getAge($hash) > $this->fetchConfig('reset_password_age_limit', 20, 'is_numeric') * 60
+        ) {
+            URL::redirect($referrer);
+        }
+
+        // password check
+        if (is_null($password) || $password == '') {
+            $this->flash->set('reset_password_error', 'Password cannot be blank.');
+            URL::redirect($referrer);
+        }
+
+        // password confirmation check        
+        if (
+            !is_null($password_confirm) &&   // a password_confirm field was entered
+            $password !== $password_confirm  // password doesn't match password_confirm
+        ) {
+            $this->flash->set('reset_password_error', 'Passwords did not match.');
+            URL::redirect($referrer);
+        }
+
+        // get username
+        $cache = $this->cache->getYAML($hash);
+        $username = $cache['username'];
+
+        // change password
+        $member = Member::load($username);
+        $member->set('password', $password);
+        $member->save();
+
+        // delete used cache
+        $this->cache->delete($hash);
+
+        // redirect
+        URL::redirect(array_get($cache, 'return', $this->fetchConfig('member_home', $site_root, null, false, false)));
     }
 }

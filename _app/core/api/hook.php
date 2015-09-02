@@ -41,43 +41,53 @@ class Hook
             $bundles_path  = APP_PATH . '/core/bundles';
             $pattern       = '/*/hooks.*.php';
             
-            // muuulllllti-gloooobbb
-            self::$hook_files = glob('{'.$bundles_path.$pattern.','.$addons_path.$pattern.'}', GLOB_BRACE);
+            // globbing with a brace doesn't seem to work on some system,
+            // it's not just Windows-based servers, seems to affect some
+            // linux-based ones too
+            $bundles  = glob($bundles_path . $pattern);
+            $addons   = glob($addons_path . $pattern);
+            
+            $bundles  = (empty($bundles)) ? array() : $bundles;
+            $addons   = (empty($addons)) ? array() : $addons;
+            
+            self::$hook_files = array_merge($bundles, $addons);
             
             Debug::markEnd($hash);
         }
 
         $hash = Debug::markStart('hooks', 'running');
         
-        foreach (self::$hook_files as $file) {
-            $name = substr($file, strrpos($file, '/') + 7);
-            $name = substr($name, 0, strlen($name) - 4);
-
-            $class_name = 'Hooks_' . $name;
-            
-            if (!is_callable(array($class_name, $namespace . '__' . $hook), false)) {
-                continue;
-            }
-            
-            try {
-                $hook_class = Resource::loadHooks($name);
-
-                $method = $namespace . '__' . $hook;
+        if (self::$hook_files) {
+            foreach (self::$hook_files as $file) {
+                $name = substr($file, strrpos($file, '/') + 7);
+                $name = substr($name, 0, strlen($name) - 4);
     
-                if ($type == 'cumulative') {
-                    $response = $hook_class->$method($data);
-                    if (is_array($response)) {
-                        $return = is_array($return) ? $return + $response : $response;
-                    } else {
-                        $return .= $response;
-                    }
-                } elseif ($type == 'replace') {
-                    $return = $hook_class->$method($data);
-                } else {
-                    $hook_class->$method($data);
+                $class_name = 'Hooks_' . $name;
+                
+                if (!is_callable(array($class_name, $namespace . '__' . $hook), false)) {
+                    continue;
                 }
-            } catch (Exception $e) {
-                continue;
+                
+                try {
+                    $hook_class = Resource::loadHooks($name);
+    
+                    $method = $namespace . '__' . $hook;
+        
+                    if ($type == 'cumulative') {
+                        $response = $hook_class->$method($data);
+                        if (is_array($response)) {
+                            $return = is_array($return) ? $return + $response : $response;
+                        } else {
+                            $return .= $response;
+                        }
+                    } elseif ($type == 'replace') {
+                        $return = $hook_class->$method($data);
+                    } else {
+                        $hook_class->$method($data);
+                    }
+                } catch (Exception $e) {
+                    continue;
+                }
             }
         }
 

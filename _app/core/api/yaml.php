@@ -38,16 +38,16 @@ class YAML
         
         $mode = $mode ? $mode : self::getMode();
 
-        switch ($mode) {
-            case('loose'): 
+        switch ($mode) {            
+            case 'loose':
                 $result = Spyc::YAMLLoad($yaml);
                 break;
             
-            case('strict'): 
+            case 'strict': 
                 $result = sYAML::parse($yaml);
                 break;
             
-            case('transitional'):
+            case 'transitional':
                 try {
                     $result = sYaml::parse($yaml);
                 } catch(Exception $e) {
@@ -56,8 +56,15 @@ class YAML
                 }
                 break;
             
-            default: 
-                $result = Spyc::YAMLLoad($yaml);
+            default:
+                // check for new lines, is this a file?
+                $has_newline = (strpos($yaml, "\n") !== false);
+                if (!$has_newline && File::exists($yaml)) {
+                    // seems like it is
+                    $yaml = File::get($yaml);
+                }
+                
+                $result = Statamic\Dipper\Dipper::parse($yaml);
         }
 
         // end measuring
@@ -96,6 +103,7 @@ class YAML
         $mode = $mode ? $mode : self::getMode();
 
         switch ($mode) {
+            case 'quick':
             case 'loose':
                 return Spyc::YAMLDump($array, false, Config::get('yaml:wrap', 0));
 

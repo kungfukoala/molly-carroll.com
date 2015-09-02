@@ -548,16 +548,20 @@ class Parser
                         // field to sort by
                         if (isset($parameters['sort_by'])) {
                             $sort_field = $parameters['sort_by'];
+                            $test_item = array_get($values, 0);
 
                             if ($sort_field == 'random') {
                                 shuffle($values);
-                            } else {
+                            
+                            } elseif ($test_item && array_get($test_item, $sort_field)) {
                                 usort($values, function($a, $b) use ($sort_field) {
-                                    $a_value = (isset($a[$sort_field])) ? $a[$sort_field] : null;
-                                    $b_value = (isset($b[$sort_field])) ? $b[$sort_field] : null;
+                                    $a_value = array_get($a, $sort_field, null);
+                                    $b_value = array_get($b, $sort_field, null);
 
                                     return \Helper::compareValues($a_value, $b_value);
                                 });
+                            } elseif (array_values($values) === $values) {
+                                sort($values);
                             }
                         }
 
@@ -566,13 +570,56 @@ class Parser
                             $values = array_reverse($values);
                         }
 
+                        // or, multisort
+                        if (isset($parameters['sort'])) {
+                            $chunks = explode(',', $parameters['sort']);
+                            foreach ($chunks as &$chunk) {
+                                $chunk = explode(' ', trim($chunk));
+
+                                if (empty($chunk[1])) {
+                                    $chunk[1] = 'asc';
+                                }
+                            }
+
+                            // sort by field
+                            usort($values, function ($item_1, $item_2) use ($chunks) {
+                                foreach ($chunks as $chunk) {
+                                    $field     = $chunk[0];
+                                    $direction = $chunk[1];
+
+                                    // grab values, translating some user-facing names into internal ones
+                                    switch ($field) {
+                                        case "random":
+                                            return rand(-1, 1);
+                                            break;
+
+                                        // not a special case, grab the field values if they exist
+                                        default:
+                                            $value_1 = (isset($item_1[$field])) ? $item_1[$field] : null;
+                                            $value_2 = (isset($item_2[$field])) ? $item_2[$field] : null;
+                                            break;
+                                    }
+
+                                    // compare the two values
+                                    // ----------------------------------------------------------------
+                                    $result = \Helper::compareValues($value_1, $value_2);
+
+                                    if ($result !== 0) {
+                                        return ($direction === 'desc') ? $result * -1 : $result;
+                                    }
+                                }
+
+                                return 0;
+                            });
+                        }
+
                         // finally, offset & limit values -------------------------
 
                         if (isset($parameters['offset']) || isset($parameters['limit'])) {
                             $offset = (isset($parameters['offset'])) ? $parameters['offset'] : 0;
                             $limit  = (isset($parameters['limit'])) ? $parameters['limit'] : null;
 
-                            $values = array_splice($values, $offset, $limit);
+                            $values = array_slice($values, $offset, $limit);
                         }
 
 
@@ -1022,7 +1069,7 @@ class Parser
 
         // <statamic>
         // expand allowed characters in variable regex
-        $this->variableRegex = '[a-zA-Z0-9_][|a-zA-Z\-\+\*%\^\/,0-9_\.'.$glue.']*';
+        $this->variableRegex = '\b(?!if|unless\s)[a-zA-Z0-9_][|a-zA-Z\-\+\*%\^\/,0-9_\.'.$glue.']*';
         // </statamic>
         $this->callbackNameRegex = $this->variableRegex.$glue.$this->variableRegex;
         $this->variableLoopRegex = '/\{\{\s*('.$this->variableRegex.')\s*\}\}(.*?)\{\{\s*\/\1\s*\}\}/ms';

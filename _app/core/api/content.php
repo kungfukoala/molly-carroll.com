@@ -26,8 +26,9 @@ class Content
         $folder        = (is_null($folder)) ? '' : $folder;
         $content_path  = Config::getContentRoot() . "/{$folder}";
         $content_type  = Config::getContentType();
+        $path          = Path::tidy("{$content_path}/{$slug}.{$content_type}");
 
-        return file_exists("{$content_path}/{$slug}.{$content_type}");
+        return File::exists($path);
     }
 
 
@@ -123,5 +124,33 @@ class Content
         Debug::markEnd($hash);
         
         return self::$fetched_content[$url_hash];
+    }
+    
+    
+    /**
+     * Finds content by path
+     * 
+     * @param string  $path  Path to use to look for content
+     * @return array|false
+     */
+    public static function find($path)
+    {
+        $hash = Debug::markStart('content', 'finding');
+        
+        // ensure it starts with /
+        $path = Path::tidy('/' . $path);
+        
+        ContentService::loadCache();
+        $urls = ContentService::$cache['urls'];
+        
+        foreach ($urls as $url => $data) {
+            if ($data['path'] === $path) {
+                return Content::get($url, false, false);
+            }
+        }
+        
+        Debug::markEnd($hash);
+        
+        return false;
     }
 }

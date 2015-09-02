@@ -1,0 +1,41 @@
+////////////////////
+//
+// Images
+//
+////////////////////
+// Background Assets
+$nav-background: "mc_nav_background_1.0.png";
+$content-background: "mc_contentbackground_1.1.png";
+$home-background: "mc_homebackground_1.0.png";
+$color-band: "mc_colorband.jpg";
+$artwork-band: "mc_artwork_1.1.jpg";
+$face-artwork: "mc_face_1.0.png";
+$background: "mc_background1.1.jpg";
+// Background Code
+%content-background { 
+  background:url(#{$img-assetpath}#{$face-artwork}) left top no-repeat;
+  @include min-screen(nth($res-collection, 3)*1px) {
+    background:url(#{$img-assetpath}#{$content-background}) right top no-repeat, url(#{$img-assetpath}#{$content-background}) -170px -280px no-repeat;
+  }
+}
+%home-background { 
+  background:url(#{$img-assetpath}#{$face-artwork}) left top no-repeat;
+  @include min-screen(nth($res-collection, 3)*1px) {
+    background:url(#{$img-assetpath}#{$home-background}) right top no-repeat, url(#{$img-assetpath}#{$content-background}) -170px -280px no-repeat;
+  }
+}
+%color-band { 
+  background:url(#{$img-assetpath}#{$color-band});
+}
+%artwork-band { 
+  background:url(#{$img-assetpath}#{$artwork-band});
+}
+%face-artwork {
+  background:url(#{$img-assetpath}#{$face-artwork});
+}
+%background { 
+  background:url(#{$img-assetpath}#{$background}) 0px 200px repeat-x;
+  @include min-screen(nth($res-collection, 3)*1px) {
+  	background:url(#{$img-assetpath}#{$background});
+  }
+}

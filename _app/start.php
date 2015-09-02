@@ -12,9 +12,12 @@
 */
 
 
-$config = Statamic::loadAllConfigs();
+// auto-determine site root
+$doc_root = str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
+define("SITE_ROOT", str_replace(realpath($doc_root), '', realpath(BASE_PATH)) . '/');
 
-$config['_cookies.secret_key'] = Cookie::getSecretKey();
+
+$config = Statamic::loadAllConfigs();
 
 $config['log_enabled'] = TRUE;
 $config['log.level'] = Log::convert_log_level($config['_log_level']);

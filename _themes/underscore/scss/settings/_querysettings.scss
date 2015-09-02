@@ -1,11 +1,6 @@
-////////////////////
 //
-// Breakpoints
 //
-////////////////////
-$break-mobile:		new-breakpoint(min-width 320px max-width 601px 6); // 0, 601px
-$break-portrait:	new-breakpoint(min-width 602px max-width 895px 12); // 641px, 1024px  
-$break-landscape:	new-breakpoint(min-width 40.063em max-width 64em 6); // 641px, 1024px 
-$break-screen:		new-breakpoint(min-width 64.063em max-width 90em 12); // 1025px, 1440px 
-$break-display:		new-breakpoint(min-width 90.063em max-width 120em 12); // 1441px, 1920px
-$break-navigation:	new-breakpoint(min-width 890px 12); // 1025px, 1440px 
+// MEDIA QUERIES
+//
+$res-collection:                      (320, 480, 770, 1100, 1280, 1680);
+$orientation-collection:              (all, portrait, landscape);

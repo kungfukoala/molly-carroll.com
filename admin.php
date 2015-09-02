@@ -25,6 +25,9 @@
 
 define("BASE_PATH", str_replace('\\', '/',  __DIR__));
 
+// define site root
+$doc_root = str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
+define("SITE_ROOT", str_replace($doc_root, '', BASE_PATH) . '/');
 /*
 |--------------------------------------------------------------------------
 | Running Above Web Root

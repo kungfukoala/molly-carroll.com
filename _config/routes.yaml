@@ -10,7 +10,7 @@ routes:
   # Visiting example.com/contact-us will...
   # load the /templates/contact.html template
 
-  /blog/categories : all-categories
+
 
 
   # ADVANCED ROUTE EXAMPLE
