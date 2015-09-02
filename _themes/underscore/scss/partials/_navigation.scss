@@ -5,7 +5,7 @@
 ////////////////////
 .nav-container { 
   padding-left:1.2em;
-  padding-top:35px;
+  padding-top:15px;
   @include min-screen(nth($res-collection, 3)*1px) {
   	padding-left:$padding-small;
   }
@@ -14,31 +14,44 @@
 	width:100%;
 	margin:0;
 	padding:0;
+  margin-bottom:10px;
 	list-style:none;
   li {
     margin-bottom:8px;
   }
 	a {
-		display:block;
 		font-size:$font-large;
 		font-family:$tertiary-font;
+    color:$coral;
 		text-decoration:none;
 		text-transform:lowercase;
 		letter-spacing:em(1);
 		margin-right:em(14);
-		border-bottom:1px dotted black;
+		border-bottom:1px dotted $coral;
 	}
-  .social-icon {
-    border-bottom:none;
-    float:left;
-  }
   .current { color:$silver; border-bottom:1px dotted $silver; }
-  @include min-screen(nth($res-collection, 3)*1px) {
+  &-social {
+    @extend .nav;
+    a {
+      margin-right:em(10);
+    }
+    .social-icon {
+      border-bottom:none;
+      float:left;
+    }
+  }
+  @include min-screen(nth($res-collection, 4)*1px) {
+  	a {
+  		display:block;
+  	}
     li {
       float:left;
     }
-    .social-icon {
-      float:none;
+    &-social {
+      float:right;
+      .social-icon {
+        float:none;
+      }
     }
   }
 }

@@ -1,12 +1,14 @@
 .validate {}
 .button {
-  border:3px solid $peach;
+  border:3px solid $coral;
+  color:$coral;
   @include border-top-radius(25px);
   @include border-right-radius(25px);
   @include border-bottom-radius(25px);
   @include border-left-radius(25px);
   padding:6px 12px;
   background-color:transparent;
+  text-decoration:none;
 }
 input[type="text"] {
   width:100%;

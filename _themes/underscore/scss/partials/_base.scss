@@ -29,7 +29,7 @@ body {
   width:auto;
   @extend %content-background;
   .page-header { padding-bottom:$padding-medium; }
-  @include min-screen(nth($res-collection, 4)*1px) {
+  @include min-screen(nth($res-collection, 3)*1px) {
     margin-right:$right-column-width;
   }
 }
@@ -45,7 +45,7 @@ body {
 }
 .artwork-column { 
   display:none;
-  @include min-screen(nth($res-collection, 4)*1px) {
+  @include min-screen(nth($res-collection, 3)*1px) {
     display:block;
     float:right;
     height:100%;
@@ -54,7 +54,7 @@ body {
 }
 .entry {
 	margin-bottom:$padding-medium;
-	border-bottom:1px dotted $magenta;
+	border-bottom:1px dotted $coral;
 }
 .body-container {
   padding-right:1.2em;
@@ -84,6 +84,6 @@ body {
 	height:186px;
 }
 .logo {
-  margin-top:45px;
-  margin-left:15px;
+  padding-top:25px;
+  margin-left:25px;
 }

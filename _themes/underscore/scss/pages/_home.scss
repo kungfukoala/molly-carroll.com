@@ -7,7 +7,6 @@
 .home-book {
   position:relative;
   text-align:center;
-  margin-bottom:25px;
 }
 .home-introduction {
   padding-left:$padding-small;
@@ -17,18 +16,28 @@
     padding:0;
   }
 }
+.home-quote {
+  margin-left:20px;
+  margin-right:20px;
+  margin-bottom:45px;
+  @include min-screen(nth($res-collection, 3)*1px) {
+    margin-left:150px;
+    margin-right:150px;
+  }
+}
 .home-video, .home-about {
   width:100%;
   margin-bottom:65px;
   h3 {
     padding-top:$padding-small;
   }
-  @include min-screen(nth($res-collection, 3)*1px) {
+  @include min-screen(nth($res-collection, 2)*1px) {
     @include span-columns(3 of 6);
   }
 }
 .home-book-info {
   @include min-screen(nth($res-collection, 3)*1px) {
+    width:300px;
     position:absolute;
     left:$padding-medium;
     bottom:45px;

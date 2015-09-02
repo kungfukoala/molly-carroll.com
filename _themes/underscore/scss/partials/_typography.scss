@@ -28,6 +28,13 @@ p {
 }
 em { font-weight:700; }
 i { font-style:italic; }
+blockquote {
+  font-family:$secondary-font;
+  font-size:em(30);
+  line-height:1.2em;
+  color:$teal;
+  text-align:center;
+}
 ////////////////////
 //
 // Headers

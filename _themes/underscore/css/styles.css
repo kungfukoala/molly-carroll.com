@@ -409,15 +409,13 @@ html {
   box-sizing: inherit; }
 
 .content-column, .content-column-home {
-  background: url(/_themes/underscore/img/mc_contentbackground_1.1.png) right top no-repeat;
-  background-size: 250px; }
+  background: url(/_themes/underscore/img/mc_face_1.0.png) left top no-repeat; }
   @media screen and (min-width: 770px) {
     .content-column, .content-column-home {
       background: url(/_themes/underscore/img/mc_contentbackground_1.1.png) right top no-repeat, url(/_themes/underscore/img/mc_contentbackground_1.1.png) -170px -280px no-repeat; } }
 
 .content-column-home {
-  background: url(/_themes/underscore/img/mc_homebackground_1.0.png) right top no-repeat;
-  background-size: 250px; }
+  background: url(/_themes/underscore/img/mc_face_1.0.png) left top no-repeat; }
   @media screen and (min-width: 770px) {
     .content-column-home {
       background: url(/_themes/underscore/img/mc_homebackground_1.0.png) right top no-repeat, url(/_themes/underscore/img/mc_contentbackground_1.1.png) -170px -280px no-repeat; } }
@@ -458,7 +456,7 @@ body {
   width: auto; }
   .content-column .page-header, .content-column-home .page-header {
     padding-bottom: 45px; }
-  @media screen and (min-width: 1100px) {
+  @media screen and (min-width: 770px) {
     .content-column, .content-column-home {
       margin-right: 368px; } }
 
@@ -473,7 +471,7 @@ body {
 
 .artwork-column {
   display: none; }
-  @media screen and (min-width: 1100px) {
+  @media screen and (min-width: 770px) {
     .artwork-column {
       display: block;
       float: right;
@@ -482,7 +480,7 @@ body {
 
 .entry {
   margin-bottom: 45px;
-  border-bottom: 1px dotted #d45a8a; }
+  border-bottom: 1px dotted #e6665c; }
 
 .body-container {
   padding-right: 1.2em;
@@ -512,43 +510,50 @@ body {
   height: 186px; }
 
 .logo {
-  margin-top: 45px;
-  margin-left: 15px; }
+  padding-top: 25px;
+  margin-left: 25px; }
 
 .nav-container {
   padding-left: 1.2em;
-  padding-top: 35px; }
+  padding-top: 15px; }
   @media screen and (min-width: 770px) {
     .nav-container {
       padding-left: 25px; } }
 
-.nav {
+.nav, .nav-social {
   width: 100%;
   margin: 0;
   padding: 0;
+  margin-bottom: 10px;
   list-style: none; }
-  .nav li {
+  .nav li, .nav-social li {
     margin-bottom: 8px; }
-  .nav a {
-    display: block;
+  .nav a, .nav-social a {
     font-size: 1.4em;
     font-family: "lust", georgia, serif;
+    color: #e6665c;
     text-decoration: none;
     text-transform: lowercase;
     letter-spacing: 0.0625em;
     margin-right: 0.875em;
-    border-bottom: 1px dotted black; }
-  .nav .social-icon {
+    border-bottom: 1px dotted #e6665c; }
+  .nav .current, .nav-social .current {
+    color: #c8c9c6;
+    border-bottom: 1px dotted #c8c9c6; }
+  .nav-social a {
+    margin-right: 0.625em; }
+  .nav-social .social-icon {
     border-bottom: none;
     float: left; }
-  .nav .current {
-    color: #d0d0cb;
-    border-bottom: 1px dotted #d0d0cb; }
-  @media screen and (min-width: 770px) {
-    .nav li {
+  @media screen and (min-width: 1100px) {
+    .nav a, .nav-social a {
+      display: block; }
+    .nav li, .nav-social li {
       float: left; }
-    .nav .social-icon {
-      float: none; } }
+    .nav-social {
+      float: right; }
+      .nav-social .social-icon {
+        float: none; } }
 
 .nav-secondary {
   margin-bottom: 45px; }
@@ -563,8 +568,8 @@ body {
     margin-right: 0.875em;
     border-bottom: 1px dotted #866a95; }
   .nav-secondary .current {
-    color: #d0d0cb;
-    border-bottom: 1px dotted #d0d0cb; }
+    color: #c8c9c6;
+    border-bottom: 1px dotted #c8c9c6; }
 
 body {
   -webkit-font-smoothing: antialiased; }
@@ -579,6 +584,13 @@ em {
 
 i {
   font-style: italic; }
+
+blockquote {
+  font-family: "lust", georgia, serif;
+  font-size: 1.875em;
+  line-height: 1.2em;
+  color: #62b9b5;
+  text-align: center; }
 
 h1, .h1, .h2, .h3, h2, h3 {
   font-family: "lust", georgia, serif;
@@ -662,8 +674,6 @@ a {
   background-position: 0px -431px; }
 
 .artwork-band {
-  position: absolute;
-  right: 0px;
   width: 368px;
   height: 100%; }
 
@@ -686,7 +696,8 @@ a {
   background-position: -1925px 0px; }
 
 .button {
-  border: 3px solid #fce2c6;
+  border: 3px solid #e6665c;
+  color: #e6665c;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
@@ -696,7 +707,8 @@ a {
   border-bottom-left-radius: 25px;
   border-top-left-radius: 25px;
   padding: 6px 12px;
-  background-color: transparent; }
+  background-color: transparent;
+  text-decoration: none; }
 
 input[type="text"] {
   width: 100%;
@@ -729,18 +741,18 @@ input[type="email"].focus {
   border-bottom: solid 2px #969696; }
 
 ::-webkit-input-placeholder {
-  color: #d0d0cb; }
+  color: #c8c9c6; }
 
 :-moz-placeholder {
-  color: #d0d0cb;
+  color: #c8c9c6;
   opacity: 1; }
 
 ::-moz-placeholder {
-  color: #d0d0cb;
+  color: #c8c9c6;
   opacity: 1; }
 
 :-ms-input-placeholder {
-  color: #d0d0cb; }
+  color: #c8c9c6; }
 
 .newsletter, .legal {
   float: left;
@@ -749,7 +761,7 @@ input[type="email"].focus {
   width: 100%;
   margin-bottom: 25px; }
   .newsletter h5, .legal h5 {
-    color: #d0d0cb; }
+    color: #e6665c; }
   .newsletter:last-child, .legal:last-child {
     margin-right: 0; }
   @media screen and (min-width: 770px) {
@@ -758,14 +770,14 @@ input[type="email"].focus {
       display: block;
       margin-right: 0%;
       width: 50%;
-      border-right: 1px solid #d0d0cb;
+      border-right: 1px solid #c8c9c6;
       margin-bottom: 0; }
       .newsletter:last-child, .legal:last-child {
         margin-right: 0; } }
 
 .legal {
   font-size: 0.9em;
-  color: #d0d0cb; }
+  color: #c8c9c6; }
   @media screen and (min-width: 770px) {
     .legal {
       padding-left: 45px;
@@ -784,8 +796,7 @@ input[type="email"].focus {
 
 .home-book {
   position: relative;
-  text-align: center;
-  margin-bottom: 25px; }
+  text-align: center; }
 
 .home-introduction {
   padding-left: 25px;
@@ -795,12 +806,21 @@ input[type="email"].focus {
       margin: 0 45px 0 45px;
       padding: 0; } }
 
+.home-quote {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 45px; }
+  @media screen and (min-width: 770px) {
+    .home-quote {
+      margin-left: 150px;
+      margin-right: 150px; } }
+
 .home-video, .home-about {
   width: 100%;
   margin-bottom: 65px; }
   .home-video h3, .home-about h3 {
     padding-top: 25px; }
-  @media screen and (min-width: 770px) {
+  @media screen and (min-width: 480px) {
     .home-video, .home-about {
       float: left;
       display: block;
@@ -814,6 +834,7 @@ input[type="email"].focus {
   text-align: left; }
   @media screen and (min-width: 770px) {
     .home-book-info {
+      width: 300px;
       position: absolute;
       left: 45px;
       bottom: 45px;

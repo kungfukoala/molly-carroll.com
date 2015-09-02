@@ -1,5 +1,5 @@
 .newsletter {
-  h5 { color:$silver; }
+  h5 { color:$coral; }
   @include span-columns(8 of 8);
   margin-bottom:$padding-small;
   @include min-screen(nth($res-collection, 3)*1px) {

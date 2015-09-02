@@ -19,10 +19,10 @@
 			<div class="artwork-band {{ artwork }}"></div>
 		</div>
 		<div class="content-column{{ if !segment_1 }}-home{{ endif }}">
+      <div class="logo"><a href="{{ homepage }}"><img src="{{ theme:img src="mc_logo_2.2.png" }}" width="336" height="78" alt="Molly Carroll Author of Cracking Open"></a></div>
   		<nav class="nav-container">
   			{{ theme:partial src="nav" }}
   		</nav>
-      <div class="logo"><a href="{{ homepage }}"><img src="{{ theme:img src="mc_logo_2.2.png" }}" width="336" height="78" alt="Molly Carroll Author of Cracking Open"></a></div>
 			<div class="container body{{ if !segment_1 }}-home{{ endif }}">
 				{{ quote|title }}
 				{{ layout_content }}
